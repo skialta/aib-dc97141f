@@ -1,0 +1,487 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Greg's AI Deep-Dive Queue</title>
+<style>
+:root{--bg:#0f1115;--card:#181b22;--fg:#e8eaf0;--mut:#9aa3b2;--acc:#7aa2ff;--ok:#3ecf8e;--b:#262a33}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 -apple-system,system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+header{position:sticky;top:0;background:rgba(15,17,21,.95);backdrop-filter:blur(6px);padding:12px 16px;border-bottom:1px solid var(--b);z-index:5}
+h1{font-size:20px;margin:0 0 8px}.wrap{max-width:820px;margin:0 auto;padding:0 16px 60px}
+.bar{height:8px;background:var(--b);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);width:0;transition:.3s}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}
+input[type=search]{flex:1;min-width:160px;padding:9px 12px;border-radius:10px;border:1px solid var(--b);background:var(--card);color:var(--fg);font-size:15px}
+.chip{padding:6px 11px;border-radius:999px;border:1px solid var(--b);background:var(--card);color:var(--mut);font-size:13px;cursor:pointer}
+.chip.on{background:var(--acc);color:#000;border-color:var(--acc)}
+h2{font-size:17px;margin:28px 0 10px;color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin:10px 0}
+.js{display:none}.hasjs .js{display:flex}.hidden{display:none!important}.card.done{opacity:.5}.meta{font-size:13px;color:var(--mut);display:flex;justify-content:space-between;gap:8px}
+.meta a{color:var(--mut)}.sum{margin:8px 0 4px;font-weight:500}.why{font-size:14px;color:#c9d1e0}
+.why b{color:var(--ok)}details{margin-top:8px;font-size:14px;color:var(--mut)}details pre{white-space:pre-wrap;font:inherit;margin:6px 0 0}
+ul{margin:8px 0 0;padding-left:18px;font-size:14px}a{color:var(--acc)}
+label.done{;gap:6px;align-items:center;font-size:13px;cursor:pointer;white-space:nowrap}
+label.done input{width:18px;height:18px}.star{border-color:#e6b450}.start{background:#1b1f14;border:1px solid #3a4220;border-radius:14px;padding:6px 14px 10px;margin-top:16px}
+.start h2{color:#e6b450}.small{font-size:12px;color:var(--mut)}
+</style></head><body>
+<header><div class="wrap" style="padding-bottom:0"><h1>🧠 AI Deep-Dive Queue</h1>
+<div class="row"><div style="flex:1"><div class="bar"><i id="pb"></i></div></div><span id="pc" class="small">0/39 done</span></div>
+<div class="row js"><input type="search" id="q" placeholder="Search posts, authors, summaries…"><label class="done"><input type="checkbox" id="hide">Hide done</label></div>
+<div class="row js" id="chips"><button class="chip on" data-c="all">All</button><button class="chip" data-c="agents">Agent workflows &amp; Grok Bot playbooks</button><button class="chip" data-c="models">New models &amp; research</button><button class="chip" data-c="safety">AI safety, science &amp; the big picture</button><button class="chip" data-c="infra">Compute &amp; infrastructure</button><button class="chip" data-c="build">Learning to build with AI</button></div></div></header>
+<main class="wrap"><div class="start" id="start"><h2>⭐ Start here</h2><div class="card star" data-id="2107350648538947870" data-c="models">
+<div class="meta"><span>⭐ <b>X Freeze</b> <a href="https://x.com/XFreeze" target="_blank">@XFreeze</a> · 2026-10-06</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Reflection AI announced Beam, a 501B-parameter mixture-of-experts open-weight model (23B active) for coding and agent tasks, trained on SpaceXAI&#x27;s Colossus compute. Weights under Apache 2.0 are promised later this month.</div><div class="why"><b>Why dive in:</b> A US frontier-class open model is a big deal for the open ecosystem. Watch for the weights and technical report dropping.</div>
+<ul><li><a href="https://x.com/XFreeze/status/2107350648538947870" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://reflection.ai/blog/introducing-beam" target="_blank" rel="noopener">Reflection: Introducing Beam</a></li><li><a href="https://siliconangle.com/2026/10/05/reflection-ai-debuts-open-source-beam-model-with-501b-parameters/" target="_blank" rel="noopener">SiliconANGLE coverage</a></li><li><a href="https://x.com/reflection_ai/status/2107186849370247235" target="_blank" rel="noopener">Reflection launch post</a></li></ul>
+<details><summary>Original post text</summary><pre>Trained on SpaceXAI&#x27;s Colossus Compute https://t.co/uz58kUTSkz</pre></details></div><div class="card star" data-id="2096630018495377464" data-c="safety">
+<div class="meta"><span>⭐ <b>Jakub Pachocki</b> <a href="https://x.com/merettm" target="_blank">@merettm</a> · 2026-09-06</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">OpenAI&#x27;s Chief Scientist Jakub Pachocki argues reasoning models are on a path toward recursive self-improvement, and that chain-of-thought monitoring, the lab&#x27;s main safety tool, is getting less reliable. He calls for mandated safety bars, third-party audits and voluntary slowdowns.</div><div class="why"><b>Why dive in:</b> It&#x27;s the clearest insider view of where frontier labs think things are heading in the next few years, and it explains concepts (goal vs. value alignment, CoT monitoring, RSI) you&#x27;ll see everywhere.</div>
+<ul><li><a href="https://x.com/merettm/status/2096630018495377464" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://openai.com/index/an-alien-mind/" target="_blank" rel="noopener">An Alien Mind (OpenAI)</a></li></ul>
+<details><summary>Original post text</summary><pre>I wrote about the state of AI, why I’m concerned about the next few years, and the choices we need to make to keep the future in humanity’s hands.
+
+An Alien Mind: https://t.co/FeIfWNe0UE</pre></details></div><div class="card star" data-id="2094466649399451768" data-c="models">
+<div class="meta"><span>⭐ <b>Anastasis Germanidis</b> <a href="https://x.com/agermanidis" target="_blank">@agermanidis</a> · 2026-08-31</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Runway&#x27;s Solaris is an &#x27;interface world model&#x27;: instead of writing code/HTML, a video model renders the app UI frame by frame in response to your clicks, while an LLM decides what should happen next.</div><div class="why"><b>Why dive in:</b> A genuinely different idea of what software could be. Worth understanding the reasoning/rendering split and the tricks used to make it real-time.</div>
+<ul><li><a href="https://x.com/agermanidis/status/2094466649399451768" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://runway.com/news/research/introducing-solaris" target="_blank" rel="noopener">Runway: Introducing Solaris</a></li><li><a href="https://arxiv.org/html/2609.00776v1" target="_blank" rel="noopener">Technical report (arXiv 2609.00776)</a></li><li><a href="https://www.alphaxiv.org/abs/2609.00776" target="_blank" rel="noopener">alphaXiv discussion</a></li><li><a href="https://x.com/runwayml/status/2094463070466646019" target="_blank" rel="noopener">Runway launch post</a></li></ul>
+<details><summary>Original post text</summary><pre>Interfaces that are generated, not coded.
+
+Solaris is our first step toward our vision of end-to-end neural software, where user interfaces are streamed directly onto your screen by a real-time video model, without any intermediate code or HTML/CSS. Today we&#x27;re releasing a technical report and opening it up for limited testing by the community.
+
+Amazing work by the team, combining the best of our research in general world models with Runway&#x27;s HCI spirit.</pre></details></div><div class="card star" data-id="2094110410987474967" data-c="infra">
+<div class="meta"><span>⭐ <b>Shaun Maguire</b> <a href="https://x.com/shaunmmaguire" target="_blank">@shaunmmaguire</a> · 2026-08-30</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Gavin Baker makes a detailed case that data centers now help on water, taxes, jobs, power prices and small towns.</div><div class="why"><b>Why dive in:</b> The most substantive data-center argument in your bookmarks. Good to understand the infrastructure debate.</div>
+<ul><li><a href="https://x.com/shaunmmaguire/status/2094110410987474967" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/GavinSBaker/status/2094081116164460995" target="_blank" rel="noopener">Gavin Baker&#x27;s full post</a></li></ul>
+<details><summary>Original post text</summary><pre>Much of the data center conversation has lacked nuance
+
+Fantastic post from @GavinSBaker https://t.co/fECsdtoTSa</pre></details></div><div class="card star" data-id="2093471590767882716" data-c="agents">
+<div class="meta"><span>⭐ <b>Elon Musk</b> <a href="https://x.com/elonmusk" target="_blank">@elonmusk</a> · 2026-08-28</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">SpaceXAI published a library of Grok Bot Guides: real playbooks for engineering, PM, design, GTM, sales, support, and running multiple teams of bots.</div><div class="why"><b>Why dive in:</b> This is the best single resource for learning how to actually use agents. Pick one guide that matches your work and copy the setup.</div>
+<ul><li><a href="https://x.com/elonmusk/status/2093471590767882716" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides</a></li><li><a href="https://x.com/XFreeze/status/2093337680452968873" target="_blank" rel="noopener">XFreeze post</a></li></ul>
+<details><summary>Original post text</summary><pre>How to use Grok @Bot https://t.co/gSVCSKC7M7</pre></details></div></div><div id="list"><section data-c="agents"><h2>Agent workflows &amp; Grok Bot playbooks (20)</h2><div class="card" data-id="2109550671813128266" data-c="agents">
+<div class="meta"><span><b>Jerrod Lew</b> <a href="https://x.com/jerrod_lew" target="_blank">@jerrod_lew</a> · 2026-10-12</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Jerrod Lew calls Grok Bot the strongest personal agent he&#x27;s used, but worries about how fast usage grows.</div><div class="why"><b>Why dive in:</b> Useful context on cost and usage management.</div>
+<ul><li><a href="https://x.com/jerrod_lew/status/2109550671813128266" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Grok Bot is the strongest personal agent I&#x27;ve used yet.
+
+Just the usage on it increases so fast, and so I&#x27;m afraid to give it too much.
+
+Really hope there are some solutions to the overall 𝕏, Grok, Grok Bot subscriptions so they role into one.</pre></details></div><div class="card" data-id="2109037099253170600" data-c="agents">
+<div class="meta"><span><b>Alex Finn</b> <a href="https://x.com/AlexFinn" target="_blank">@AlexFinn</a> · 2026-10-10</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Alex Finn launched Agent Use Cases, a free site that scans the web daily for real AI-agent use cases and gives you the prompt for each one.</div><div class="why"><b>Why dive in:</b> Straight to the &#x27;what do I actually do with agents&#x27; problem. A good idea feed.</div>
+<ul><li><a href="https://x.com/AlexFinn/status/2109037099253170600" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://agentusecases.ai/" target="_blank" rel="noopener">agentusecases.ai</a></li></ul>
+<details><summary>Original post text</summary><pre>The number 1 complaint I hear from people is they just don&#x27;t know wtf to do with AI agents
+
+They set up Grok Bot, Muse, Hark, Dots, Hermes and then do nothing with it
+
+So I&#x27;m launching a free project: Agent Use Cases
+
+It&#x27;s a website that scans the entire internet every day and finds every use case people do with AI agents
+
+Searches across basically every site on the internet to see what people are doing with AI agents that is making them money/providing them value
+
+Use cases are organized by category and which agent they&#x27;re used in
+
+Gives you the use case, end result, and prompt to steal the use case
+
+Some cool use cases I&#x27;ve already discovered:
+
+1. Finding unclaimed money online
+2.  Negotiate phone bill down autonomously
+3. Teach an agent to day trade
+
+It&#x27;s completely free. Nothing pay walled. You can just go on and discover cool new use cases
+
+I&#x27;d recommend browsing then giving the link of this post to your agent and having it find use cases relevant to you
+
+Sign up for the newsletter if you want 5 new use cases in your inbox every morning too
+
+Check it out: https://t.co/ovTDKYMYH1</pre></details></div><div class="card" data-id="2108068838101397516" data-c="agents">
+<div class="meta"><span><b>Brian Roemmele</b> <a href="https://x.com/BrianRoemmele" target="_blank">@BrianRoemmele</a> · 2026-10-08</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Brian Roemmele asks for a live dashboard to monitor, pace and pause many Grok Bots at once, and to let bots interact with each other.</div><div class="why"><b>Why dive in:</b> A preview of the next pain point once you run several agents.</div>
+<ul><li><a href="https://x.com/BrianRoemmele/status/2108068838101397516" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Elon, thanks for asking! Right now tracking progress in a live dashboard of many Grok @Bot would be very useful. As we build many processes it gets complex and to get a broad overview of status and requests would be a big help. Most folks are visual and dashboards could simplify tracking.
+
+I have some examples below.
+
+The ability to also allow a @Bot to interact with another via the dashboard would be very powerful. 
+
+Any ability to pause, pace or halt a @Bot here would be awesome.
+
+I imagine myself and my clients to have this dashboard open all time to interact with @Bot.
+
+I have a few more, but this has been top of mind today.</pre></details></div><div class="card" data-id="2108262529571144176" data-c="agents">
+<div class="meta"><span><b>Nikita Bier</b> <a href="https://x.com/nikitabier" target="_blank">@nikitabier</a> · 2026-10-08</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Nikita Bier&#x27;s tongue-in-cheek &#x27;Hello computer&#x27; mega-prompt (rebuild GTA in my hometown, fund it by selling my games).</div><div class="why"><b>Why dive in:</b> Fun, but also a sketch of where long-horizon agents are going.</div>
+<ul><li><a href="https://x.com/nikitabier/status/2108262529571144176" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Hello computer.
+Decompile and distill Grand Theft Auto.
+Make the game set in my hometown -- use Google Earth to reconstruct it in pixel-perfect detail.
+Make the character me and have my spawn point be in the mansion I always look at on Zillow.
+Review my chat memory and make every mission about  my hopes and dreams.
+Make it playable online so my friends can join.
+When you&#x27;re done, sell all my video games on Ebay and use that money to fund tokens for my next game.</pre></details></div><div class="card" data-id="2107842663500099834" data-c="agents">
+<div class="meta"><span><b>Christoffer Bjelke</b> <a href="https://x.com/chribjel" target="_blank">@chribjel</a> · 2026-10-07</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Pairing Grok Bot with Cursor cloud agents &#x27;unlocked&#x27; a big productivity jump for this user.</div><div class="why"><b>Why dive in:</b> A combo worth trying for coding work.</div>
+<ul><li><a href="https://x.com/chribjel/status/2107842663500099834" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides: Engineering</a></li></ul>
+<details><summary>Original post text</summary><pre>something just unlocked for me in my brain
+
+grok bot + cursor cloud agents is actually an insane productivity boost holy shit</pre></details></div><div class="card" data-id="2100048900942094348" data-c="agents">
+<div class="meta"><span><b>tetsuo</b> <a href="https://x.com/tetsuoai" target="_blank">@tetsuoai</a> · 2026-09-16</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Lingxi Li has bots sweep the monorepo overnight for quality and security issues, so he wakes up to a stack of cleanup PRs. Quotes the Grok Bot &#x27;3 employees build a company in 3 days&#x27; livestream.</div><div class="why"><b>Why dive in:</b> &#x27;Agents work while you sleep&#x27; made concrete. A pattern you can copy.</div>
+<ul><li><a href="https://x.com/tetsuoai/status/2100048900942094348" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/bot/status/2099890276315848743" target="_blank" rel="noopener">Grok Bot: build a company in 3 days</a></li></ul>
+<details><summary>Original post text</summary><pre>SpaceXAI engineer Lingxi Li, @lingxi, runs code cleanup while everyone else is asleep. Nobody is shipping at 3 AM, so conflicts are rare and the changes are low risk.
+
+His bots start a research agent that sweeps the monorepo for quality issues, poor modularization, comment bloat and security gaps. He wakes up to a stack of PRs.</pre></details></div><div class="card" data-id="2098155792327381294" data-c="agents">
+<div class="meta"><span><b>matt palmer</b> <a href="https://x.com/mattyp" target="_blank">@mattyp</a> · 2026-09-10</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Matt Palmer walks through giving Grok Bot a phone: installing a calling tool, Bland voice setup, a live call, transcript and cost review, then chaining bots.</div><div class="why"><b>Why dive in:</b> A step-by-step video on adding a real-world capability to an agent.</div>
+<ul><li><a href="https://x.com/mattyp/status/2098155792327381294" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Giving Grok Bot a Phone
+
+00:19 Installing Dialbot
+00:54 Bland voice setup
+02:39 Why use a calling agent?
+03:20 Live demo call
+04:50 Reviewing the transcript and cost
+05:38 Chaining bots
+
+@Bot can do anything you can - this is one way to make calls https://t.co/UirGit6QdS</pre></details></div><div class="card" data-id="2096265603820540069" data-c="agents">
+<div class="meta"><span><b>Leon Abboud</b> <a href="https://x.com/leonabboud" target="_blank">@leonabboud</a> · 2026-09-05</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Tip: before an agent tackles a task, have it watch the top 20 recent YouTube videos on the topic and distill the transcripts into a reusable skill.</div><div class="why"><b>Why dive in:</b> A cheap, repeatable way to make agent skills better.</div>
+<ul><li><a href="https://x.com/leonabboud/status/2096265603820540069" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Please please please, before you have your grokbot, hermes, or Claude do anything, ask it to go watch 20 of the top videos on YouTube about the topic.
+
+Use this skill:
+
+&quot;I want you to learn the skill of [INSERT TASK], what I need you to do is go on YouTube, and watch the top 20 videos on that topic in the last 6 months. Export the transcripts, and consolidate all your learnings into one skill. If a certain point gets repeated often across multiple videos, give these points more weight in your skill.&quot;
+
+I&#x27;ve personally done this with virtually every agent skill I have, be it landing page design, LinkedIn formats, SEO articles...
+
+It takes 20 minutes to most agents to go through everything and will 10x the quality of your agent&#x27;s output.</pre></details></div><div class="card" data-id="2094822086376042688" data-c="agents">
+<div class="meta"><span><b>Mr. Systems</b> <a href="https://x.com/AISystems_hq" target="_blank">@AISystems_hq</a> · 2026-09-01</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Lists a stack of small Claude &#x27;skills&#x27; (voice, content, ads, weekly close, KPI pulse) that together run a business.</div><div class="why"><b>Why dive in:</b> A template for thinking in many small skills instead of one giant prompt.</div>
+<ul><li><a href="https://x.com/AISystems_hq/status/2094822086376042688" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Most people build one Claude skill, feel clever for a week, and stop. The people running whole businesses on Claude just never stopped stacking.
+
+Content: a /voice skill trained on your real posts instead of adjectives, a /week-of-content skill that interviews you once and drafts every channel, a /repurpose skill that splits winners into threads and newsletter sections.
+
+Visuals: /brand-look holds your palette and rules so every image prompt comes out on-brand. /post-to-graphic turns writing into shareables from one template.
+
+Ads: /ad-angles mines reviews and comments for the pains buyers actually name. /ad-copy turns one angle into hooks and variants.
+
+Organization: /weekly-close files the week and writes the report. /decision-log keeps every call you made. /kpi-pulse drops the scoreboard every Friday.
+
+Each one is ten minutes to build. Together they are the difference between using Claude and running on it.
+
+Bookmark this and build one per week. In ten weeks the team is you.</pre></details></div><div class="card" data-id="2094477810177806468" data-c="agents">
+<div class="meta"><span><b>Movez</b> <a href="https://x.com/0xMovez" target="_blank">@0xMovez</a> · 2026-08-31</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">SpaceXAI engineer Lauren Tan runs 20+ Grok Bot agents structured like an org: a chief of staff, 3 managers and 16 workers. The post links her 1-hour workshop.</div><div class="why"><b>Why dive in:</b> A concrete model for scaling from one bot to a team, from someone who builds it.</div>
+<ul><li><a href="https://x.com/0xMovez/status/2094477810177806468" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/0xCodez/status/2089676836619878567" target="_blank" rel="noopener">Linked tutorial article</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides: multiple teams of bots</a></li></ul>
+<details><summary>Original post text</summary><pre>SpaceXAI engineer, Lauren Tan:
+
+&quot;GrokBot is the most powerful agentic tool we have ever built, but only 1% of users use it correctly
+
+right now I&#x27;m running a team of 20+ GrokBot agents. I have a Chief of Staff agent, 3 managers and 16 workers - that&#x27;s how the team looks like&quot;
+
+In a 1-hour workshop, a SpaceXAI engineer reveals how to use Grok agents at 100% of their potential
+
+worth more than a $500 agent engineering course on the internet
+
+Skip Netflix and watch today, it will change the way you use GrokBot forever, then read the article below</pre></details></div><div class="card" data-id="2094495912580071883" data-c="agents">
+<div class="meta"><span><b>mr fundman</b> <a href="https://x.com/mrfundman" target="_blank">@mrfundman</a> · 2026-08-31</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Shares Lingxi Li&#x27;s article &#x27;Grok Bot for Engineering&#x27;: how a SpaceXAI engineer runs a fleet of engineering bots that manage cloud agents.</div><div class="why"><b>Why dive in:</b> A practitioner&#x27;s write-up of a real setup, not a hype thread.</div>
+<ul><li><a href="https://x.com/mrfundman/status/2094495912580071883" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/lingxi/status/2094493172516966781" target="_blank" rel="noopener">Lingxi&#x27;s article post</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides</a></li></ul>
+<details><summary>Original post text</summary><pre>SpaceX engineer just dropped his Grok Bot setup.. I’m stealing this https://t.co/TmDxiI8xei</pre></details></div><div class="card" data-id="2094085464022298668" data-c="agents">
+<div class="meta"><span><b>Sarvesh Shrivastava</b> <a href="https://x.com/bloggersarvesh" target="_blank">@bloggersarvesh</a> · 2026-08-30</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Points to an article on growing a business with Grok Bot + SEO.</div><div class="why"><b>Why dive in:</b> Moneymaking-thread genre. Skim, don&#x27;t take the numbers at face value.</div>
+<ul><li><a href="https://x.com/bloggersarvesh/status/2094085464022298668" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/bloggersarvesh/status/2088983373859725755" target="_blank" rel="noopener">The article</a></li></ul>
+<details><summary>Original post text</summary><pre>realizing this is the only Grok Bot article you’ll ever need to make your first million dollars. https://t.co/B2oUj45TMi https://t.co/NHrYRA3uj8</pre></details></div><div class="card star" data-id="2093471590767882716" data-c="agents">
+<div class="meta"><span>⭐ <b>Elon Musk</b> <a href="https://x.com/elonmusk" target="_blank">@elonmusk</a> · 2026-08-28</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">SpaceXAI published a library of Grok Bot Guides: real playbooks for engineering, PM, design, GTM, sales, support, and running multiple teams of bots.</div><div class="why"><b>Why dive in:</b> This is the best single resource for learning how to actually use agents. Pick one guide that matches your work and copy the setup.</div>
+<ul><li><a href="https://x.com/elonmusk/status/2093471590767882716" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides</a></li><li><a href="https://x.com/XFreeze/status/2093337680452968873" target="_blank" rel="noopener">XFreeze post</a></li></ul>
+<details><summary>Original post text</summary><pre>How to use Grok @Bot https://t.co/gSVCSKC7M7</pre></details></div><div class="card" data-id="2092460754767151349" data-c="agents">
+<div class="meta"><span><b>Min Choi</b> <a href="https://x.com/minchoi" target="_blank">@minchoi</a> · 2026-08-26</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Min Choi shares a Grok Bot &#x27;chief of staff&#x27; prompt (in the image).</div><div class="why"><b>Why dive in:</b> A ready-made prompt to try.</div>
+<ul><li><a href="https://x.com/minchoi/status/2092460754767151349" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides: Work</a></li></ul>
+<details><summary>Original post text</summary><pre>This Grok Bot prompt is literally $300/hr chief of staff https://t.co/dxLaVtmXVJ</pre></details></div><div class="card" data-id="2090883994883645663" data-c="agents">
+<div class="meta"><span><b>cvxv666</b> <a href="https://x.com/antpalkin" target="_blank">@antpalkin</a> · 2026-08-21</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Claims a six-agent Grok Bot &#x27;research desk&#x27; (filings, earnings, etc.) writing to a shared vault replaces roughly $294K/yr of Wall Street research tools and staff. The author published every prompt.</div><div class="why"><b>Why dive in:</b> Ignore the hype numbers. The multi-agent design (specialist bots plus a shared vault) is the useful part.</div>
+<ul><li><a href="https://x.com/antpalkin/status/2090883994883645663" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/antpalkin/status/2085431604906766385" target="_blank" rel="noopener">The full article with prompts</a></li></ul>
+<details><summary>Original post text</summary><pre>Grok Bot by Elon Musk just replaced a $294,000 Wall Street research desk. Six AI agents, $200 a month, doing the work BlackRock pays people six figures for.
+
+The guy who built it published every prompt.
+
+What that desk cost before the bots:
+
+&gt; $27,000 a year for the Bloomberg terminal
+&gt; $22,000 for Refinitiv
+&gt; $50,000 for sell-side research
+&gt; $15,000 for AlphaSense
+&gt; $180,000 for the junior analyst who reads all of it until 2am so somebody senior can trade on it before the open
+
+$294,000 a year. The agents cost $2,400. Same brief, 122 times cheaper, and it is there before the open.
+
+Six agents split that desk. Each one gets its own computer in the cloud, and they all write into the same vault.
+
+&gt; FILINGS reads every 10-K, 10-Q and 8-K on a 100-ticker watchlist overnight and flags the ugly parts: going concern language, auditor changes, restatements
+&gt; EARNINGS reads the call transcript within 24 hours and tells you if the CFO got quieter than he was last quarter
+&gt; SECTOR does one pass per sector and picks up the rule change nobody read
+&gt; INSIDER catches Form 4 buys over $1 million and new positions from Two Sigma, Third Point and D.E. Shaw the day the 13Fs land
+&gt; CHATTER counts mentions on X and flags any ticker three standard deviations louder than its own 30-day normal
+&gt; CHIEF OF STAFF reads the other five at 5:30am, bins anything only one of them flagged, and emails you the ranked brief at 6
+
+One analyst covers 30 names. Six agents cover 3,000 and finish before the open.
+
+You show them the job once. They repeat it every night with your laptop shut.
+
+Every research floor on Wall Street was priced on reading being slow and people being expensive. Both of those stopped being true this month.
+
+So you wake up, read for five minutes, and know what moved on every name you hold. That used to be somebody&#x27;s entire job, and he got a bonus for it.
+
+The article below is the step by step guide to building the whole AI trading machine. Save &amp; read it, you will want it open while you build.</pre></details></div><div class="card" data-id="2090853842552578523" data-c="agents">
+<div class="meta"><span><b>Elon Musk</b> <a href="https://x.com/elonmusk" target="_blank">@elonmusk</a> · 2026-08-21</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Grok Bot access expanded to SuperGrok Plus, Cursor Pro+ and Teams, with a limited free trial for others.</div><div class="why"><b>Why dive in:</b> Background on availability.</div>
+<ul><li><a href="https://x.com/elonmusk/status/2090853842552578523" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/bot/status/2090852881373311369" target="_blank" rel="noopener">Grok Bot announcement</a></li></ul>
+<details><summary>Original post text</summary><pre>Wider access to Grok @Bot https://t.co/z8OX1xWoxs</pre></details></div><div class="card" data-id="2090603356649562522" data-c="agents">
+<div class="meta"><span><b>David Carbutt</b> <a href="https://x.com/DavidCarbutt_" target="_blank">@DavidCarbutt_</a> · 2026-08-21</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">A non-developer describes Grok Bot reading Slack, email, Notion and Stripe and briefing him daily, plus building video slide packs for his editors.</div><div class="why"><b>Why dive in:</b> A non-technical user&#x27;s real workflow. Closest to your use case.</div>
+<ul><li><a href="https://x.com/DavidCarbutt_/status/2090603356649562522" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/DavidCarbutt_/status/2089858218847576118" target="_blank" rel="noopener">Original post</a></li></ul>
+<details><summary>Original post text</summary><pre>Grok Bot is hands down one of the best products I have ever used. Maybe the best ever. 
+
+I have had it less than a week. I am not a developer. I talk to one chat and it already knows my business better than me.
+
+It reads Slack, email,  meeting notes, Notion, and Stripe. It knows Farzad, my clients, the courses we sell, the agency, the sales calls, and who owes each step in our workflow. I do not brief it every morning. It briefs me.
+
+Course scripts go through a Claude project we linked. Claude writes. This thing briefs it, fact-checks, and makes it sound like me before I film.
+
+YouTube is another bit.  It builds the 1080p slides to go in videos, zips them with a cue sheet, and drops the pack in Slack for the editors the same turn. Caught a bad number in a SpaceX video the night I was filming, rebuilt the slides, and sent the pack. Script change, slide change. I did not have to ask twice.
+
+It sat on our sales calls and reviewed the process.  Then it wrote a rule from that. Book the next call before you hang up. Send the Stripe link while they are still there. Stop emailing homework.
+
+It built a live 50% off code on Stripe for an AI course and set when it dies. Stripe is a minefield when you don’t know what you’re doing, could have taken me an hour and it did it in one click.
+
+I told it my rules for life. Question every requirement. Delete before you simplify. It holds me to that on the work, without me invoking it.
+
+This is a chief of staff I hired on a Tuesday. Don’t sleep on GrokBot.</pre></details></div><div class="card" data-id="2090488891824607396" data-c="agents">
+<div class="meta"><span><b>codila</b> <a href="https://x.com/0xCodila" target="_blank">@0xCodila</a> · 2026-08-20</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Promotes a free 1-hour course going from your first Grok Bot to a 24/7 agent team, with timestamps.</div><div class="why"><b>Why dive in:</b> A structured path if you want a guided walkthrough.</div>
+<ul><li><a href="https://x.com/0xCodila/status/2090488891824607396" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/0xCodila/status/2090130749768786050" target="_blank" rel="noopener">Linked guide article</a></li></ul>
+<details><summary>Original post text</summary><pre>SpaceXAI just released free 1-hour course on Grok Bot Agents: 1 prompt → CEO bot → agent teams → full 24/7 system from 0% to 100%:
+
+0% → 2:15 - build your first Grok Bot
+25% → 6:52 - give every Bot a role
+50% → 16:51 - teach Bots to work 24/7
+75% → 31:50 - run agent teams in parallel
+100% → 52:18 - full system that automate your life
+
+most agent tutorials give you a chatbot that waits for prompts - this one builds a 24/7 team that works while your laptop is closed - by team who build it
+ 
+watch it, build one Bot, turn it into a team - then read the full Grok Bot architecture below ↓</pre></details></div><div class="card" data-id="2090489998382375423" data-c="agents">
+<div class="meta"><span><b>Elon Musk</b> <a href="https://x.com/elonmusk" target="_blank">@elonmusk</a> · 2026-08-20</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Elon shares the official &#x27;ways people used Grok Bot this week&#x27; roundup.</div><div class="why"><b>Why dive in:</b> Quick idea browsing.</div>
+<ul><li><a href="https://x.com/elonmusk/status/2090489998382375423" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/bot/status/2090168861912170972" target="_blank" rel="noopener">Grok Bot roundup</a></li></ul>
+<details><summary>Original post text</summary><pre>Interesting ways to use Grok @Bot https://t.co/oTPZoNza6U</pre></details></div><div class="card" data-id="2090189407659999603" data-c="agents">
+<div class="meta"><span><b>X Freeze</b> <a href="https://x.com/XFreeze" target="_blank">@XFreeze</a> · 2026-08-19</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Suggests letting Grok Build audit a new Windows laptop and remove bloatware, showing you the plan first.</div><div class="why"><b>Why dive in:</b> A practical, low-risk first agent task.</div>
+<ul><li><a href="https://x.com/XFreeze/status/2090189407659999603" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Whenever you buy a new Windows laptop, one of the first things you should do is run Grok Build
+
+Windows and many laptop manufacturers ship PCs with a surprising amount of stuff you probably never asked for:
+
+• Trial antivirus and OEM apps
+• Preinstalled games and partner software
+• Ads, recommendations, news and widgets
+• Unnecessary startup/background apps
+• Temporary files and other clutter
+
+Instead of spending an hour digging through Windows settings and wondering what is safe to remove, let Grok Build audit the whole machine, figure out what is unnecessary and clean it up for you
+
+Just make sure it shows you the plan first and leaves drivers, security features and hardware-critical software alone
+
+Start with:
+“Audit this Windows PC and safely clean up everything unnecessary. Remove unwanted bloatware, trial software and preinstalled games, disable ads, recommendations, news/widgets and unnecessary startup/background apps, and clean temporary files. Do not touch drivers, Windows security, updates or anything required for the laptop’s hardware. Show me the plan first, then make the approved changes”
+
+A clean Windows install makes a brand-new laptop so much nicer to use</pre></details></div></section><section data-c="models"><h2>New models &amp; research (6)</h2><div class="card star" data-id="2107350648538947870" data-c="models">
+<div class="meta"><span>⭐ <b>X Freeze</b> <a href="https://x.com/XFreeze" target="_blank">@XFreeze</a> · 2026-10-06</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Reflection AI announced Beam, a 501B-parameter mixture-of-experts open-weight model (23B active) for coding and agent tasks, trained on SpaceXAI&#x27;s Colossus compute. Weights under Apache 2.0 are promised later this month.</div><div class="why"><b>Why dive in:</b> A US frontier-class open model is a big deal for the open ecosystem. Watch for the weights and technical report dropping.</div>
+<ul><li><a href="https://x.com/XFreeze/status/2107350648538947870" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://reflection.ai/blog/introducing-beam" target="_blank" rel="noopener">Reflection: Introducing Beam</a></li><li><a href="https://siliconangle.com/2026/10/05/reflection-ai-debuts-open-source-beam-model-with-501b-parameters/" target="_blank" rel="noopener">SiliconANGLE coverage</a></li><li><a href="https://x.com/reflection_ai/status/2107186849370247235" target="_blank" rel="noopener">Reflection launch post</a></li></ul>
+<details><summary>Original post text</summary><pre>Trained on SpaceXAI&#x27;s Colossus Compute https://t.co/uz58kUTSkz</pre></details></div><div class="card" data-id="2104993363170861501" data-c="models">
+<div class="meta"><span><b>Andrew Ambrosino</b> <a href="https://x.com/ajambrosino" target="_blank">@ajambrosino</a> · 2026-09-29</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">OpenAI says the team rewrote ChatGPT Web on the desktop codebase in 5 weeks, which was only possible with GPT-6 Astra.</div><div class="why"><b>Why dive in:</b> A real-world data point on AI-accelerated software &#x27;megaprojects&#x27;.</div>
+<ul><li><a href="https://x.com/ajambrosino/status/2104993363170861501" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Over the past 5 weeks, the team completely rewrote ChatGPT Web on top of the desktop app codebase.
+
+This was only possible with Astra, and it’s why Dots, Space, Codex Cloud, and so many more of our launches will come to web and desktop same day. 
+
+Era of the megaproject begins.</pre></details></div><div class="card" data-id="2099951120571613517" data-c="models">
+<div class="meta"><span><b>Alisina</b> <a href="https://x.com/Alisina_ai" target="_blank">@Alisina_ai</a> · 2026-09-15</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">ChatGPT co-inventor Diogo Almeida launched Jev, a &#x27;decision model&#x27; that returns typed choices and calibrated probabilities instead of text. It&#x27;s trained with a method called RLCD and is claimed to be 20-200x faster and 40-400x cheaper.</div><div class="why"><b>Why dive in:</b> An interesting counter-bet to chatbots: tiny, calibrated decision engines you wire into code. Worth checking whether the claims hold up.</div>
+<ul><li><a href="https://x.com/Alisina_ai/status/2099951120571613517" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/CompleteSkeptic/status/2099925682726002904" target="_blank" rel="noopener">Diogo Almeida&#x27;s launch post</a></li><li><a href="https://www.jevtypesafeai.com/jev/rlcd" target="_blank" rel="noopener">RLCD explainer (Jev site)</a></li></ul>
+<details><summary>Original post text</summary><pre>The guy who helped invent ChatGPT just shipped an AI that refuses to talk.
+No essays.
+No poems.
+No “as an AI language model.”
+It only makes decisions.
+200x faster.
+400x cheaper.
+Output tokens: free.
+Hallucinations: impossible, because it can’t speak.
+We spent 4 years paying a novelist to do an accountant’s job.</pre></details></div><div class="card" data-id="2096561374667342186" data-c="models">
+<div class="meta"><span><b>Higgsfield AI 🧩</b> <a href="https://x.com/higgsfield_ai" target="_blank">@higgsfield_ai</a> · 2026-09-06</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Higgsfield shows GPT-6 Astra making a kids&#x27; cartoon, editing in Premiere and uploading to YouTube.</div><div class="why"><b>Why dive in:</b> Shows how far computer-use agents now reach into creative tools.</div>
+<ul><li><a href="https://x.com/higgsfield_ai/status/2096561374667342186" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>This is GPT-6 Astra making a kids’ cartoon with Higgsfield.
+
+Editing it in Premiere. uploading it to YouTube.
+
+This is actually crazy. https://t.co/o1H0Hg5O7k</pre></details></div><div class="card star" data-id="2094466649399451768" data-c="models">
+<div class="meta"><span>⭐ <b>Anastasis Germanidis</b> <a href="https://x.com/agermanidis" target="_blank">@agermanidis</a> · 2026-08-31</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Runway&#x27;s Solaris is an &#x27;interface world model&#x27;: instead of writing code/HTML, a video model renders the app UI frame by frame in response to your clicks, while an LLM decides what should happen next.</div><div class="why"><b>Why dive in:</b> A genuinely different idea of what software could be. Worth understanding the reasoning/rendering split and the tricks used to make it real-time.</div>
+<ul><li><a href="https://x.com/agermanidis/status/2094466649399451768" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://runway.com/news/research/introducing-solaris" target="_blank" rel="noopener">Runway: Introducing Solaris</a></li><li><a href="https://arxiv.org/html/2609.00776v1" target="_blank" rel="noopener">Technical report (arXiv 2609.00776)</a></li><li><a href="https://www.alphaxiv.org/abs/2609.00776" target="_blank" rel="noopener">alphaXiv discussion</a></li><li><a href="https://x.com/runwayml/status/2094463070466646019" target="_blank" rel="noopener">Runway launch post</a></li></ul>
+<details><summary>Original post text</summary><pre>Interfaces that are generated, not coded.
+
+Solaris is our first step toward our vision of end-to-end neural software, where user interfaces are streamed directly onto your screen by a real-time video model, without any intermediate code or HTML/CSS. Today we&#x27;re releasing a technical report and opening it up for limited testing by the community.
+
+Amazing work by the team, combining the best of our research in general world models with Runway&#x27;s HCI spirit.</pre></details></div><div class="card" data-id="2092033614745878918" data-c="models">
+<div class="meta"><span><b>Robert Scoble</b> <a href="https://x.com/Scobleizer" target="_blank">@Scobleizer</a> · 2026-08-24</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Kotoba Tech demos real-time speech translation that clones your voice as you speak (Japanese → English).</div><div class="why"><b>Why dive in:</b> Live voice translation is close to mainstream. Worth tracking.</div>
+<ul><li><a href="https://x.com/Scobleizer/status/2092033614745878918" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/kotoba_tech/status/2091942422930710886" target="_blank" rel="noopener">Kotoba demo post</a></li></ul>
+<details><summary>Original post text</summary><pre>Real time. 
+
+I have a feeling this will be a trend soon. https://t.co/d4ecV9YFjH</pre></details></div></section><section data-c="safety"><h2>AI safety, science &amp; the big picture (7)</h2><div class="card" data-id="2100889764740182424" data-c="safety">
+<div class="meta"><span><b>*Walter Bloomberg</b> <a href="https://x.com/DeItaone" target="_blank">@DeItaone</a> · 2026-09-18</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Reports say Anthropic has set up a Bay Area wet lab so Claude&#x27;s biology work can be tested in real experiments, with a longer-term aim of Claude directing lab robots. Anthropic says the work stays preclinical.</div><div class="why"><b>Why dive in:</b> AI moving from &#x27;answers on a screen&#x27; into physical science is one of the most consequential threads to follow.</div>
+<ul><li><a href="https://x.com/DeItaone/status/2100889764740182424" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://www.reuters.com/world/anthropic-quietly-sets-up-biology-lab-it-ramps-ai-drug-program-2026-09-18/" target="_blank" rel="noopener">Reuters exclusive</a></li><li><a href="https://www.anthropic.com/research/claude-discovers-novel-enzyme-system" target="_blank" rel="noopener">Anthropic: Claude discovers a novel enzyme system</a></li><li><a href="https://qz.com/anthropic-biology-wet-lab-ai-drug-research-091826" target="_blank" rel="noopener">Quartz summary</a></li></ul>
+<details><summary>Original post text</summary><pre>ANTHROPIC BUILDS BIOLOGY LAB TO PUSH AI INTO DRUG DEVELOPMENT
+
+Anthropic has quietly established a Bay Area wet lab, moving its life-sciences ambitions beyond computer simulations and into physical biological experiments.
+
+The company wants Claude to direct laboratory robots with limited human intervention, potentially accelerating research into rare and traditionally “undruggable” diseases.
+
+Anthropic says it will focus on preclinical research rather than clinical trials, avoiding direct competition with pharmaceutical companies.</pre></details></div><div class="card" data-id="2100952390145094094" data-c="safety">
+<div class="meta"><span><b>Chamath Palihapitiya</b> <a href="https://x.com/chamath" target="_blank">@chamath</a> · 2026-09-18</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Chamath mocks Anthropic for building a wet lab, given its safety-focused reputation.</div><div class="why"><b>Why dive in:</b> The opposite take on the item above. Read the two together.</div>
+<ul><li><a href="https://x.com/chamath/status/2100952390145094094" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://www.reuters.com/world/anthropic-quietly-sets-up-biology-lab-it-ramps-ai-drug-program-2026-09-18/" target="_blank" rel="noopener">Reuters exclusive</a></li></ul>
+<details><summary>Original post text</summary><pre>The group behind such hits as: “We’re All Going To Die” and “Regulate Me Now” are building a wet lab in SF. 
+
+I do not recommend this. https://t.co/wUESmhXxJp</pre></details></div><div class="card" data-id="2101068931876438279" data-c="safety">
+<div class="meta"><span><b>DogeDesigner</b> <a href="https://x.com/cb_doge" target="_blank">@cb_doge</a> · 2026-09-18</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Jensen Huang says there&#x27;s &#x27;zero percent chance&#x27; AI ends the world by 2030.</div><div class="why"><b>Why dive in:</b> The optimist counterpoint to the Pachocki essay.</div>
+<ul><li><a href="https://x.com/cb_doge/status/2101068931876438279" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>🚨 JENSEN HUANG: “2030 is not going to be the end of the world. There is zero percent chance that&#x27;s going to be the end of the world. I completely disagree that AI is going to destroy, is going to be the end of the world in 2030.” https://t.co/nZdK6NiKDq</pre></details></div><div class="card" data-id="2101047397040189800" data-c="safety">
+<div class="meta"><span><b>Joe Lonsdale</b> <a href="https://x.com/JTLonsdale" target="_blank">@JTLonsdale</a> · 2026-09-18</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Joe Lonsdale promotes using AI to surface fraud in public spending.</div><div class="why"><b>Why dive in:</b> An example of AI as an investigative and audit tool.</div>
+<ul><li><a href="https://x.com/JTLonsdale/status/2101047397040189800" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/amoptimistshow/status/2101042956962758734" target="_blank" rel="noopener">Show clip</a></li></ul>
+<details><summary>Original post text</summary><pre>He&#x27;s applying AI to uncover massive grift &amp; fraud, like the $21B racial wealth transfer he reveals on the show today. 
+
+It&#x27;s no coincidence the far-left wants control of AI - it’s too useful to expose corruption!
+
+Bullish on Brian, and on AI helping to improve our civilization 🇺🇸 https://t.co/W0V3Q8sww2</pre></details></div><div class="card" data-id="2100692434586046484" data-c="safety">
+<div class="meta"><span><b>Gerrit W. Gong</b> <a href="https://x.com/GerritWGong" target="_blank">@GerritWGong</a> · 2026-09-17</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Elder Gerrit W. Gong shares a Diplomatic Courier article on AI needing a moral compass.</div><div class="why"><b>Why dive in:</b> A faith and ethics perspective on AI.</div>
+<ul><li><a href="https://x.com/GerritWGong/status/2100692434586046484" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>I was honored to share my thoughts on artificial intelligence in this @diplocourier article. AI is an important topic, and it is something I feel strongly needs moral compass.
+
+If you have a moment, I invite you to read the article, and I’d love to hear what you think.
+
+https://t.co/rFhAkVbFLp</pre></details></div><div class="card star" data-id="2096630018495377464" data-c="safety">
+<div class="meta"><span>⭐ <b>Jakub Pachocki</b> <a href="https://x.com/merettm" target="_blank">@merettm</a> · 2026-09-06</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">OpenAI&#x27;s Chief Scientist Jakub Pachocki argues reasoning models are on a path toward recursive self-improvement, and that chain-of-thought monitoring, the lab&#x27;s main safety tool, is getting less reliable. He calls for mandated safety bars, third-party audits and voluntary slowdowns.</div><div class="why"><b>Why dive in:</b> It&#x27;s the clearest insider view of where frontier labs think things are heading in the next few years, and it explains concepts (goal vs. value alignment, CoT monitoring, RSI) you&#x27;ll see everywhere.</div>
+<ul><li><a href="https://x.com/merettm/status/2096630018495377464" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://openai.com/index/an-alien-mind/" target="_blank" rel="noopener">An Alien Mind (OpenAI)</a></li></ul>
+<details><summary>Original post text</summary><pre>I wrote about the state of AI, why I’m concerned about the next few years, and the choices we need to make to keep the future in humanity’s hands.
+
+An Alien Mind: https://t.co/FeIfWNe0UE</pre></details></div><div class="card" data-id="2094439965371293969" data-c="safety">
+<div class="meta"><span><b>Patrick OShaughnessy</b> <a href="https://x.com/patrick_oshag" target="_blank">@patrick_oshag</a> · 2026-08-31</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Patrick O&#x27;Shaughnessy: &#x27;wake me up when AI can write like Steinbeck to Marilyn Monroe.&#x27;</div><div class="why"><b>Why dive in:</b> A short prompt for thinking about AI and great writing.</div>
+<ul><li><a href="https://x.com/patrick_oshag/status/2094439965371293969" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>Wake me up when AI can write like John Steinbeck to Marilyn Monroe 😂 https://t.co/OqR3NQu9Gz</pre></details></div></section><section data-c="infra"><h2>Compute &amp; infrastructure (2)</h2><div class="card" data-id="2098217236771295567" data-c="infra">
+<div class="meta"><span><b>Elon Musk</b> <a href="https://x.com/elonmusk" target="_blank">@elonmusk</a> · 2026-09-11</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Elon shares a Grok Bot summary of SpaceX&#x27;s CFO talk: vertical integration, terrestrial compute (~$100B ARR target), orbital compute satellites next year, and the Cursor acquisition.</div><div class="why"><b>Why dive in:</b> A dense snapshot of the AI-compute strategy behind the tools you use.</div>
+<ul><li><a href="https://x.com/elonmusk/status/2098217236771295567" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/cb_doge/status/2098159970948903091" target="_blank" rel="noopener">Full summary post</a></li></ul>
+<details><summary>Original post text</summary><pre>Grok @Bot summary of SpaceX CFO talk https://t.co/UwPshiaEF0</pre></details></div><div class="card star" data-id="2094110410987474967" data-c="infra">
+<div class="meta"><span>⭐ <b>Shaun Maguire</b> <a href="https://x.com/shaunmmaguire" target="_blank">@shaunmmaguire</a> · 2026-08-30</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Gavin Baker makes a detailed case that data centers now help on water, taxes, jobs, power prices and small towns.</div><div class="why"><b>Why dive in:</b> The most substantive data-center argument in your bookmarks. Good to understand the infrastructure debate.</div>
+<ul><li><a href="https://x.com/shaunmmaguire/status/2094110410987474967" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/GavinSBaker/status/2094081116164460995" target="_blank" rel="noopener">Gavin Baker&#x27;s full post</a></li></ul>
+<details><summary>Original post text</summary><pre>Much of the data center conversation has lacked nuance
+
+Fantastic post from @GavinSBaker https://t.co/fECsdtoTSa</pre></details></div></section><section data-c="build"><h2>Learning to build with AI (4)</h2><div class="card" data-id="2109357962007331164" data-c="build">
+<div class="meta"><span><b>Marco</b> <a href="https://x.com/maarcoofdezz" target="_blank">@maarcoofdezz</a> · 2026-10-11</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Spanish-language recommendation of Dean Perkins, who shows how to auto-generate videos with Claude Code in 22 minutes.</div><div class="why"><b>Why dive in:</b> A hands-on tutorial.</div>
+<ul><li><a href="https://x.com/maarcoofdezz/status/2109357962007331164" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/deanwperkins/status/2109357283327037930" target="_blank" rel="noopener">Dean Perkins post</a></li></ul>
+<details><summary>Original post text</summary><pre>no os miento cuando os digo que quizá nos encontramos ante la mayor cuenta de Twitter de la historia relacionada con la IA, no he visto un tweet malo de esta cuenta https://t.co/8HcwTLUaIA</pre></details></div><div class="card" data-id="2098397653386035205" data-c="build">
+<div class="meta"><span><b>Marco</b> <a href="https://x.com/maarcoofdezz" target="_blank">@maarcoofdezz</a> · 2026-09-11</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Recommends Dean Perkins again, here sharing a Google Cloud engineer building a full app with Claude live in 26 minutes.</div><div class="why"><b>Why dive in:</b> A good watch for seeing vibe-coding done end to end.</div>
+<ul><li><a href="https://x.com/maarcoofdezz/status/2098397653386035205" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/deanwperkins/status/2098392170197561573" target="_blank" rel="noopener">Dean Perkins post</a></li></ul>
+<details><summary>Original post text</summary><pre>sigan a este tipo si quieren aprender cosas realmente útiles relacionadas con la IA
+
+no falla una https://t.co/WukrasvRZY</pre></details></div><div class="card" data-id="2096222075681734863" data-c="build">
+<div class="meta"><span><b>ashe</b> <a href="https://x.com/ashebytes" target="_blank">@ashebytes</a> · 2026-09-05</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Ashe Magalhaes&#x27; open-source 3D anatomy explorer with 2,234 selectable meshes, plus code.</div><div class="why"><b>Why dive in:</b> An example of the kind of polished app individuals now ship quickly.</div>
+<ul><li><a href="https://x.com/ashebytes/status/2096222075681734863" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://human-atlas-seven.vercel.app/" target="_blank" rel="noopener">Live demo</a></li><li><a href="https://github.com/ashemag/human-atlas" target="_blank" rel="noopener">Code on GitHub</a></li></ul>
+<details><summary>Original post text</summary><pre>demo: https://t.co/8lVObWS2kh
+code: https://t.co/8w4ABJJVo4</pre></details></div><div class="card" data-id="2090451529530757267" data-c="build">
+<div class="meta"><span><b>Alaxie</b> <a href="https://x.com/Alaxie_Ai" target="_blank">@Alaxie_Ai</a> · 2026-08-20</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Thread promising 7 ChatGPT prompts to replace streaming subscriptions.</div><div class="why"><b>Why dive in:</b> Low-substance engagement bait. Safe to skip.</div>
+<ul><li><a href="https://x.com/Alaxie_Ai/status/2090451529530757267" target="_blank" rel="noopener">Open the post on X</a></li></ul>
+<details><summary>Original post text</summary><pre>CANCELLED NETFLIX. CANCELLED AMAZON PRIME.
+
+CANCELLED HULU.  No more $19.99 each month.
+
+ChatGPT transformed my laptop into a free streaming center.  Here are 7 prompts to create this system:</pre></details></div></section></div>
+<p class="small">Built from your 100 most recent X bookmarks, filtered to AI (39 items). Done-status is saved in this browser when storage is available.</p></main>
+<script>
+(function(){try{
+var K='greg-ai-done-v1',mem={},done={};
+function load(){try{return JSON.parse(window.localStorage.getItem(K)||'{}')||{}}catch(e){return mem}}
+function save(){try{window.localStorage.setItem(K,JSON.stringify(done))}catch(e){mem=done}}
+done=load();document.documentElement.className+=' hasjs';
+var cards=[].slice.call(document.querySelectorAll('.card')),cl='all',T=39;
+function sync(){var n=0;for(var k in done)if(done[k])n++;
+document.getElementById('pb').style.width=(100*n/T)+'%';document.getElementById('pc').textContent=n+'/'+T+' done';
+cards.forEach(function(c){var d=!!done[c.dataset.id];c.classList.toggle('done',d);c.querySelector('.dn').checked=d})}
+function filt(){var q=document.getElementById('q').value.toLowerCase(),h=document.getElementById('hide').checked;
+cards.forEach(function(c){var ok=(cl==='all'||c.dataset.c===cl)&&(!h||!done[c.dataset.id])&&(!q||c.textContent.toLowerCase().indexOf(q)>-1);c.classList.toggle('hidden',!ok)});
+[].forEach.call(document.querySelectorAll('section,#start'),function(s){var v=s.querySelectorAll('.card:not(.hidden)').length;s.classList.toggle('hidden',!v||(s.id==='start'&&(q||cl!=='all')))})}
+document.addEventListener('change',function(e){if(e.target.classList.contains('dn')){var id=e.target.closest('.card').dataset.id;if(e.target.checked)done[id]=1;else delete done[id];save();sync();filt()}});
+document.getElementById('chips').addEventListener('click',function(e){var c=e.target.dataset&&e.target.dataset.c;if(!c)return;cl=c;[].forEach.call(document.querySelectorAll('.chip'),function(x){x.classList.toggle('on',x.dataset.c===c)});filt()});
+document.getElementById('q').addEventListener('input',filt);document.getElementById('hide').addEventListener('change',filt);
+sync();filt()}catch(e){document.documentElement.className=document.documentElement.className.replace(' hasjs','')}})();
+</script></body></html>
