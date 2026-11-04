@@ -21,10 +21,98 @@ label.done input{width:18px;height:18px}.star{border-color:#e6b450}.start{backgr
 .start h2{color:#e6b450}.small{font-size:12px;color:var(--mut)}
 .disc{border-top:2px dashed #6b5bd6;margin-top:32px;padding-top:4px}.disc h2,.disc h3{color:#a99bff}.disc .card{border-color:#3d3570}</style></head><body>
 <header><div class="wrap" style="padding-bottom:0"><h1>🧠 AI Deep-Dive Queue</h1>
-<div class="row"><div style="flex:1"><div class="bar"><i id="pb"></i></div></div><span id="pc" class="small">0/63 done</span></div>
+<div class="row"><div style="flex:1"><div class="bar"><i id="pb"></i></div></div><span id="pc" class="small">0/67 done</span></div>
 <div class="row js"><input type="search" id="q" placeholder="Search posts, authors, summaries…"><label class="done"><input type="checkbox" id="hide">Hide done</label></div>
 <div class="row js" id="chips"><button class="chip on" data-c="all">All</button><button class="chip" data-c="agents">Agent workflows &amp; Grok Bot playbooks</button><button class="chip" data-c="models">New models &amp; research</button><button class="chip" data-c="safety">AI safety, science &amp; the big picture</button><button class="chip" data-c="infra">Compute &amp; infrastructure</button><button class="chip" data-c="build">Learning to build with AI</button><button class="chip" data-c="discover">🔭 Discover</button></div></div></header>
-<main class="wrap"><div class="start" id="start"><h2>⭐ Start here</h2><div class="card star" data-id="2116518052720185449" data-c="agents">
+<main class="wrap"><div class="start" id="start"><h2>⭐ Start here</h2><div class="card star" data-id="2117734977312047537" data-c="agents">
+<div class="meta"><span>⭐ <b>GREG ISENBERG</b> <a href="https://x.com/gregisenberg" target="_blank">@gregisenberg</a> · 2026-11-03</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Greg Isenberg lays out the full agent stack he runs his company on: voice notes to Grok Bot, an agent that interrogates ideas before building, competitor research with Exa and Firecrawl, Claude Code generating four versions of every screen, Orca running a fleet of coding agents in parallel git worktrees, agents user-testing previews as different personas, Sentry errors turned into fix PRs, a 7am funnel check through PostHog, and skills for his writing voice and design system.</div><div class="why"><b>Why dive in:</b> It&#x27;s one of the most complete real-world maps of a company run by agents, and the closing tricks are worth stealing for any bot setup: one agent per platform, a cheap model for triage, an AI judge that sends back anything scoring under 8, a five-line nightly log from every agent, and turning every agent mistake into a new skill so it only happens once.</div>
+<ul><li><a href="https://x.com/gregisenberg/status/2117734977312047537" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">mattpocock/skills (includes /grill-me)</a></li><li><a href="https://github.com/stablyai/orca" target="_blank" rel="noopener">stablyai/orca: run a fleet of agents</a></li><li><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">anthropics/skills (frontend-design and more)</a></li><li><a href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener">akitaonrails/ai-memory: git-backed agent memory</a></li></ul>
+<details><summary>Original post text</summary><pre>running a company nowadays feels kinda dystopian
+
+my team is 50+ people in 12 countries, but i talk to my agents more than my human teammates
+
+- voice note to grokbot
+- mattpocock/skills /grill-me so the agent interrogates the idea before anything gets built
+- spec drops into linear through the linear mcp
+- exa + firecrawl agent reads every competitor site, pricing page and changelog
+- https://t.co/a5ARFnvSnA to find ideas and trends
+- apify pulls g2, reddit and app store reviews
+- prompt: &quot;find the 10 complaints that show up most and quote the users&quot;
+- context7 so the agent reads the latest docs before it touches any api
+
+the design
+
+- claude code + paper mcp
+- 4 versions of every screen before a single line of code
+- pick pieces from 2, it merges them. diverge then converge
+- frontend-design skill from anthropic/skills + our own design system skill
+- cleanshot screenshots of any ui i like go straight in with &quot;make it feel like this&quot;
+
+the build
+
+- pingdotgg/t3code as the control surface for every agent, from my phone too
+- stablyai/orca runs a fleet of agents in parallel, each in its own git worktree
+- graphify maps the whole codebase into a knowledge graph so agents navigate instead of guess
+- headroom compresses tool outputs before they hit the model, so tokens go 20-95% further
+- lsp plugins so the agent sees types and errors like an ide does
+- security guidance hook flags risky edits before they land
+- supabase mcp for the database, stripe for billing
+- github mcp opens the pr, vercel spins up a preview
+- loops run overnight, i check what shipped over coffee
+
+the user testing
+
+- lightpanda as the headless browser, way lighter than chromium so you can run hundreds at once
+- agents click every flow on the preview like a first-time user
+- one persona is impatient, one is confused, one is on a phone
+- playwright + chrome devtools mcp for regression tests
+
+the bugs
+
+- sentry mcp catches the error
+- agent reads the stack trace and opens a fix pr in under 10 minutes
+- human just approves
+
+the data
+
+- posthog mcp cron at 7am on yesterday&#x27;s funnel
+- any step that drops more than 10%, the agent watches 20 session replays and tells me why
+- stripe mcp pulls every cancellation reason into one doc every monday
+
+the agents&#x27; tools
+
+- orgo so every agent gets its own computer
+- agentmail so every agent gets its own inbox
+- agentphone so i can call them from the car
+- composio connect-apps for every other connector
+- akitaonrails/ai-memory, a git-backed markdown wiki so they remember what we decided last week
+
+the skills
+
+- wshobson/agents so skills work across claude code, codex and opencode
+- my writing voice
+- our design system
+- how we write specs
+- skill creator so the agents write new skills themselves
+
+some helpful tricks
+
+- one agent per platform. the x agent never touches email
+- cheap model for triage, opus for anything that ships
+- every output gets scored 1-10 by an llm judge. under 8 goes back
+- every agent writes a 5-line log at night so i can read the whole company in 2 minutes
+- every agent mistake becomes a new skill, so it only happens once
+
+the team
+
+- humans get version 5, not my voice note which they are happy about lol 
+- their job is creative feedback, relationships and telling the agents what they got wrong
+
+a human pm reviews the funnel once a week. this reviews it every morning
+
+running a company is now voice notes and inference</pre></details></div><div class="card star" data-id="2116518052720185449" data-c="agents">
 <div class="meta"><span>⭐ <b>akari</b> <a href="https://x.com/akarixbt" target="_blank">@akarixbt</a> · 2026-10-31</span>
 <label class="done js"><input type="checkbox" class="dn">Done</label></div>
 <div class="sum">A hype post about a claimed 60+ bot setup run like a company (a chief of staff that plans the day, PMs that hand out work, QA that checks every result, 45+ workers). It quotes m4lka&#x27;s X article &#x27;Harness, Loops, Graphs: What Each Layer Fixes and What It Breaks&#x27;, a 7-level ladder from pasting into a chat to an agent system that learns from its own failures.</div><div class="why"><b>Why dive in:</b> Skip the hype and read the quoted article. Its ideas are practical for any bot or routine you build: a check that can actually fail (never trust &#x27;should pass now&#x27;), stopping when the same error comes back twice, and gating changes on how hard they are to undo, so you only review what can&#x27;t be taken back.</div>
@@ -93,7 +181,116 @@ Fantastic post from @GavinSBaker https://t.co/fECsdtoTSa</pre></details></div><d
 <label class="done js"><input type="checkbox" class="dn">Done</label></div>
 <div class="sum">SpaceXAI published a library of Grok Bot Guides: real playbooks for engineering, PM, design, GTM, sales, support, and running multiple teams of bots.</div><div class="why"><b>Why dive in:</b> This is the best single resource for learning how to actually use agents. Pick one guide that matches your work and copy the setup.</div>
 <ul><li><a href="https://x.com/elonmusk/status/2093471590767882716" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides</a></li><li><a href="https://x.com/XFreeze/status/2093337680452968873" target="_blank" rel="noopener">XFreeze post</a></li></ul>
-<details><summary>Original post text</summary><pre>How to use Grok @Bot https://t.co/gSVCSKC7M7</pre></details></div></div><div id="list"><section data-c="agents"><h2>Agent workflows &amp; Grok Bot playbooks (32)</h2><div class="card star" data-id="2116518052720185449" data-c="agents">
+<details><summary>Original post text</summary><pre>How to use Grok @Bot https://t.co/gSVCSKC7M7</pre></details></div></div><div id="list"><section data-c="agents"><h2>Agent workflows &amp; Grok Bot playbooks (35)</h2><div class="card star" data-id="2117734977312047537" data-c="agents">
+<div class="meta"><span>⭐ <b>GREG ISENBERG</b> <a href="https://x.com/gregisenberg" target="_blank">@gregisenberg</a> · 2026-11-03</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">Greg Isenberg lays out the full agent stack he runs his company on: voice notes to Grok Bot, an agent that interrogates ideas before building, competitor research with Exa and Firecrawl, Claude Code generating four versions of every screen, Orca running a fleet of coding agents in parallel git worktrees, agents user-testing previews as different personas, Sentry errors turned into fix PRs, a 7am funnel check through PostHog, and skills for his writing voice and design system.</div><div class="why"><b>Why dive in:</b> It&#x27;s one of the most complete real-world maps of a company run by agents, and the closing tricks are worth stealing for any bot setup: one agent per platform, a cheap model for triage, an AI judge that sends back anything scoring under 8, a five-line nightly log from every agent, and turning every agent mistake into a new skill so it only happens once.</div>
+<ul><li><a href="https://x.com/gregisenberg/status/2117734977312047537" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">mattpocock/skills (includes /grill-me)</a></li><li><a href="https://github.com/stablyai/orca" target="_blank" rel="noopener">stablyai/orca: run a fleet of agents</a></li><li><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">anthropics/skills (frontend-design and more)</a></li><li><a href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener">akitaonrails/ai-memory: git-backed agent memory</a></li></ul>
+<details><summary>Original post text</summary><pre>running a company nowadays feels kinda dystopian
+
+my team is 50+ people in 12 countries, but i talk to my agents more than my human teammates
+
+- voice note to grokbot
+- mattpocock/skills /grill-me so the agent interrogates the idea before anything gets built
+- spec drops into linear through the linear mcp
+- exa + firecrawl agent reads every competitor site, pricing page and changelog
+- https://t.co/a5ARFnvSnA to find ideas and trends
+- apify pulls g2, reddit and app store reviews
+- prompt: &quot;find the 10 complaints that show up most and quote the users&quot;
+- context7 so the agent reads the latest docs before it touches any api
+
+the design
+
+- claude code + paper mcp
+- 4 versions of every screen before a single line of code
+- pick pieces from 2, it merges them. diverge then converge
+- frontend-design skill from anthropic/skills + our own design system skill
+- cleanshot screenshots of any ui i like go straight in with &quot;make it feel like this&quot;
+
+the build
+
+- pingdotgg/t3code as the control surface for every agent, from my phone too
+- stablyai/orca runs a fleet of agents in parallel, each in its own git worktree
+- graphify maps the whole codebase into a knowledge graph so agents navigate instead of guess
+- headroom compresses tool outputs before they hit the model, so tokens go 20-95% further
+- lsp plugins so the agent sees types and errors like an ide does
+- security guidance hook flags risky edits before they land
+- supabase mcp for the database, stripe for billing
+- github mcp opens the pr, vercel spins up a preview
+- loops run overnight, i check what shipped over coffee
+
+the user testing
+
+- lightpanda as the headless browser, way lighter than chromium so you can run hundreds at once
+- agents click every flow on the preview like a first-time user
+- one persona is impatient, one is confused, one is on a phone
+- playwright + chrome devtools mcp for regression tests
+
+the bugs
+
+- sentry mcp catches the error
+- agent reads the stack trace and opens a fix pr in under 10 minutes
+- human just approves
+
+the data
+
+- posthog mcp cron at 7am on yesterday&#x27;s funnel
+- any step that drops more than 10%, the agent watches 20 session replays and tells me why
+- stripe mcp pulls every cancellation reason into one doc every monday
+
+the agents&#x27; tools
+
+- orgo so every agent gets its own computer
+- agentmail so every agent gets its own inbox
+- agentphone so i can call them from the car
+- composio connect-apps for every other connector
+- akitaonrails/ai-memory, a git-backed markdown wiki so they remember what we decided last week
+
+the skills
+
+- wshobson/agents so skills work across claude code, codex and opencode
+- my writing voice
+- our design system
+- how we write specs
+- skill creator so the agents write new skills themselves
+
+some helpful tricks
+
+- one agent per platform. the x agent never touches email
+- cheap model for triage, opus for anything that ships
+- every output gets scored 1-10 by an llm judge. under 8 goes back
+- every agent writes a 5-line log at night so i can read the whole company in 2 minutes
+- every agent mistake becomes a new skill, so it only happens once
+
+the team
+
+- humans get version 5, not my voice note which they are happy about lol 
+- their job is creative feedback, relationships and telling the agents what they got wrong
+
+a human pm reviews the funnel once a week. this reviews it every morning
+
+running a company is now voice notes and inference</pre></details></div><div class="card" data-id="2117690367634280519" data-c="agents">
+<div class="meta"><span><b>kaivectorf</b> <a href="https://x.com/kaivectorf" target="_blank">@kaivectorf</a> · 2026-11-03</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">A hype repost of a 40-minute talk by SpaceXAI engineer Lauren Tan, claimed to show her running 100+ Grok Bot agents as a team: a chief of staff, 10 managers and 90+ workers. It quotes beamnxw&#x27;s &#x27;Grok Bot Engineering&#x27; harness article.</div><div class="why"><b>Why dive in:</b> This is the scaled-up version of Lauren&#x27;s setup you already saved (20+ bots with a chief of staff, 3 managers and 16 workers). The video is the useful part; take the numbers with a grain of salt and pair it with the official guide on running multiple teams of bots.</div>
+<ul><li><a href="https://x.com/kaivectorf/status/2117690367634280519" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/beamnxw/status/2107143806546002398" target="_blank" rel="noopener">Quoted article: Grok Bot harness for a one-person company</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides: multiple teams of bots</a></li></ul>
+<details><summary>Original post text</summary><pre>This is f*cking insane. SpaceXAI Senior Engineer, Lauren Tan:
+
+“GrokBot is the most powerful agentic tool we’ve ever shipped, but 99% of users use it wrong.
+  
+At SpaceXAI I’m running a team of 100+ GrokBot agents — Chief of Staff, 10 managers, and 90+ workers.
+
+That’s the new engineering setup in 2026.”
+
+In 40 minutes, she shows exactly how to get 100% out of every agentic tool you’re using.
+
+GrokBot → Chief of Staff → Managers → 90+ Workers → Full Team
+
+Worth more than any $5000 agentic course on the internet.
+
+Skip Netflix and watch it today — it will change the way you use GrokBot forever.
+
+Then read the GrokBot engineering guide below to build your own GrokBot team ↓</pre></details></div><div class="card star" data-id="2116518052720185449" data-c="agents">
 <div class="meta"><span>⭐ <b>akari</b> <a href="https://x.com/akarixbt" target="_blank">@akarixbt</a> · 2026-10-31</span>
 <label class="done js"><input type="checkbox" class="dn">Done</label></div>
 <div class="sum">A hype post about a claimed 60+ bot setup run like a company (a chief of staff that plans the day, PMs that hand out work, QA that checks every result, 45+ workers). It quotes m4lka&#x27;s X article &#x27;Harness, Loops, Graphs: What Each Layer Fixes and What It Breaks&#x27;, a 7-level ladder from pasting into a chat to an agent system that learns from its own failures.</div><div class="why"><b>Why dive in:</b> Skip the hype and read the quoted article. Its ideas are practical for any bot or routine you build: a check that can actually fail (never trust &#x27;should pass now&#x27;), stopping when the same error comes back twice, and gating changes on how hard they are to undo, so you only review what can&#x27;t be taken back.</div>
@@ -314,7 +511,18 @@ When you&#x27;re done, sell all my video games on Ebay and use that money to fun
 <ul><li><a href="https://x.com/chribjel/status/2107842663500099834" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.ai/bot/guides" target="_blank" rel="noopener">Grok Bot Guides: Engineering</a></li></ul>
 <details><summary>Original post text</summary><pre>something just unlocked for me in my brain
 
-grok bot + cursor cloud agents is actually an insane productivity boost holy shit</pre></details></div><div class="card" data-id="2100048900942094348" data-c="agents">
+grok bot + cursor cloud agents is actually an insane productivity boost holy shit</pre></details></div><div class="card" data-id="2107143806546002398" data-c="agents">
+<div class="meta"><span><b>beamnxw ./</b> <a href="https://x.com/beamnxw" target="_blank">@beamnxw</a> · 2026-10-05</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">beamnxw&#x27;s article &#x27;Grok Bot Engineering: Set Up a Harness for Your One-Person Company&#x27; walks through a solo-business setup: an Operator bot whose description holds the standing rules, a short company brief as the source of truth, a work board with statuses (ready, working, blocked, awaiting approval, complete), Auto-review with Ask-first rules for outside actions, and an acceptance check on every task.</div><div class="why"><b>Why dive in:</b> It&#x27;s a practical, copyable template rather than hype, and it links the official docs for each step. The habits it teaches (one clear owner per task, a written definition of done, and an approval line for anything external) are what make a bot reliable enough to leave running.</div>
+<ul><li><a href="https://x.com/beamnxw/status/2107143806546002398" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://docs.x.ai/grok-bot/get-started" target="_blank" rel="noopener">Grok Bot docs: get started</a></li><li><a href="https://docs.x.ai/grok-bot/bots" target="_blank" rel="noopener">Grok Bot docs: bots and memory</a></li><li><a href="https://docs.x.ai/grok-bot/approvals-security-and-privacy" target="_blank" rel="noopener">Grok Bot docs: approvals, security and privacy</a></li></ul>
+<details><summary>Original post text</summary><pre>Founders using Grok Bot are already one step ahead of you
+
+Give your one-person company an AI workforce
+
+Reduce routine outsourcing and reclaim founder time
+
+Copy the full Grok Bot harness below ↓ https://t.co/V9wcsNtwQM</pre></details></div><div class="card" data-id="2100048900942094348" data-c="agents">
 <div class="meta"><span><b>tetsuo</b> <a href="https://x.com/tetsuoai" target="_blank">@tetsuoai</a> · 2026-09-16</span>
 <label class="done js"><input type="checkbox" class="dn">Done</label></div>
 <div class="sum">Lingxi Li has bots sweep the monorepo overnight for quality and security issues, so he wakes up to a stack of cleanup PRs. Quotes the Grok Bot &#x27;3 employees build a company in 3 days&#x27; livestream.</div><div class="why"><b>Why dive in:</b> &#x27;Agents work while you sleep&#x27; made concrete. A pattern you can copy.</div>
@@ -674,7 +882,71 @@ An Alien Mind: https://t.co/FeIfWNe0UE</pre></details></div><div class="card" da
 <ul><li><a href="https://x.com/shaunmmaguire/status/2094110410987474967" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/GavinSBaker/status/2094081116164460995" target="_blank" rel="noopener">Gavin Baker&#x27;s full post</a></li></ul>
 <details><summary>Original post text</summary><pre>Much of the data center conversation has lacked nuance
 
-Fantastic post from @GavinSBaker https://t.co/fECsdtoTSa</pre></details></div></section><section data-c="build"><h2>Learning to build with AI (6)</h2><div class="card" data-id="2115148923337842788" data-c="build">
+Fantastic post from @GavinSBaker https://t.co/fECsdtoTSa</pre></details></div></section><section data-c="build"><h2>Learning to build with AI (7)</h2><div class="card" data-id="2117620332060172594" data-c="build">
+<div class="meta"><span><b>godsystem</b> <a href="https://x.com/godsystemsmd" target="_blank">@godsystemsmd</a> · 2026-11-03</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">A clip of Eric Schmidt saying the easy way to make money now is to build an agent that does one job better than anyone else, and that the next year or two is the agentic window. The post then lists free resources for learning Claude Code: Anthropic&#x27;s Claude Code 101 and Claude Code in Action courses, the prompt engineering guide and interactive tutorial, the docs on CLAUDE.md memory, skills, MCP and routines, and two community guides. It quotes rari&#x27;s article on harness engineering.</div><div class="why"><b>Why dive in:</b> The hype is generic, but the link list is a real, free curriculum, and the quoted harness article is the best part: it explains why agents fail because of the setup around the model, not the model itself, and lays out a harness&#x27;s jobs (a task contract, a small map of the project, well-defined tools, memory kept outside the chat, checks that can fail). Those ideas apply directly to Grok Bot routines.</div>
+<ul><li><a href="https://x.com/godsystemsmd/status/2117620332060172594" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://anthropic.skilljar.com/claude-code-101" target="_blank" rel="noopener">Anthropic: Claude Code 101 (free course)</a></li><li><a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener">Claude Code docs: skills</a></li><li><a href="https://github.com/hesreallyhim/awesome-claude-code" target="_blank" rel="noopener">Awesome Claude Code (community list)</a></li><li><a href="https://x.com/0xwhrrari/status/2093685107534000560" target="_blank" rel="noopener">rari&#x27;s article: Harness Engineering</a></li><li><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener">OpenAI: Harness engineering with Codex</a></li></ul>
+<details><summary>Original post text</summary><pre>This is f*cking insane. Former Google CEO Eric Schmidt, the man who ran Google for 10 years:
+
+&quot;If you really want to make money, it&#x27;s actually easy, found an agentic AI company, I mean build an agent to do something
+
+If you build a better agent than anyone else, you can probably build one incredible company and own it yourself&quot;
+
+In 27 seconds, he explains why the next year or two is the agentic period, and why the window won&#x27;t stay open
+
+Prompts → Claude Code → Memory → Skills → MCP → A Company You Own Yourself
+
+Save this before it disappears from your feed
+
+Everything below is free:
+
+Agent architecture
+https://t.co/Chvem5GspS
+
+Claude Code 101
+https://t.co/aG7NouZfew
+
+Claude Code in action
+https://t.co/4CQGgMyqGS
+
+Prompt engineering
+https://t.co/vHGrXwMdVp
+
+Interactive prompt course
+https://t.co/Eagw53Bv7h
+
+Claude.md + memory
+https://t.co/QNPfajPDER
+
+Skills
+https://t.co/2i7BUY3nIt
+
+MCP
+https://t.co/DmunNrf3Rh
+
+Routines
+https://t.co/plUZELLKgI
+
+Claude Code ultimate guide
+https://t.co/fbjAnwI7Q2
+
+Awesome Claude Code
+https://t.co/IfTGf6LHeF
+
+Anthropic academy
+https://t.co/VVGgBp5mTE
+
+Official Claude Code docs
+https://t.co/cOsKsz4o73
+
+All of this costs $0
+
+95% will spend the agentic period scrolling AI threads, the 5% who ship agents will own the companies that come out of it
+
+Bookmark it and start with the first link tonight
+
+Then read how to build an agent that actually does the job in the harness engineering guide below ↓</pre></details></div><div class="card" data-id="2115148923337842788" data-c="build">
 <div class="meta"><span><b>tetsuo</b> <a href="https://x.com/tetsuoai" target="_blank">@tetsuoai</a> · 2026-10-27</span>
 <label class="done js"><input type="checkbox" class="dn">Done</label></div>
 <div class="sum">tetsuo spots Director by Xi Yan in the Grok Bot Marketplace: a bot that takes a brief and plans, shoots, cuts and delivers short films, ads, explainers or music videos. Importing it brings a pack of video skills (formats, planning, frames, takes, look and a project folder).</div><div class="why"><b>Why dive in:</b> A ready-made way to try the new video creation from the Oct 22 update without writing your own pipeline. Looking at how its skills split the job up is a good lesson in structuring a creative agent.</div>
@@ -749,14 +1021,14 @@ ChatGPT transformed my laptop into a free streaming center.  Here are 7 prompts 
 <div class="sum">Points to a 45-minute session where SpaceXAI&#x27;s Peng Zheng and Lauren Tan show how they use Grok Bot to build Grok Bot across design, engineering, user feedback and bot management.</div><div class="why"><b>Why dive in:</b> The internal playbook behind the guides you saved. The framing is hypey, but the linked session is the real substance.</div>
 <ul><li><a href="https://x.com/0xGenAi/status/2105372581725356099" target="_blank" rel="noopener">Open the post on X</a></li></ul>
 </div><h3>Accounts worth following</h3><ul><li><a href="https://x.com/poteto" target="_blank" rel="noopener">@poteto</a> (Lauren Tan): Builds Grok Bot at SpaceXAI (ex-Cursor, React compiler); the most practical agent-workflow posts on X. ~188K followers.</li><li><a href="https://x.com/hardmaru" target="_blank" rel="noopener">@hardmaru</a> (hardmaru): Sakana AI co-founder and CEO; shares serious research (self-improvement, evolutionary methods). ~441K followers.</li><li><a href="https://x.com/ArtificialAnlys" target="_blank" rel="noopener">@ArtificialAnlys</a> (Artificial Analysis): Independent benchmarks and price comparisons for every new model; a fast way to cut through launch hype. ~159K followers.</li><li><a href="https://x.com/OfficialLoganK" target="_blank" rel="noopener">@OfficialLoganK</a> (Logan Kilpatrick): Leads Gemini API / AI Studio at Google; first to post Gemini launches. ~379K followers.</li><li><a href="https://x.com/bot" target="_blank" rel="noopener">@bot</a> (Grok Bot): The official Grok Bot account: weekly use-case roundups, workshops and launches (it&#x27;s the source of several of your bookmarks). ~391K followers.</li></ul></section></div>
-<p class="small">Built from your 100 most recent X bookmarks, filtered to AI, plus a Discover section (63 items). Done-status is saved in this browser when storage is available.</p></main>
+<p class="small">Built from your 100 most recent X bookmarks, filtered to AI, plus a Discover section (67 items). Done-status is saved in this browser when storage is available.</p></main>
 <script>
 (function(){try{
 var K='greg-ai-done-v1',mem={},done={};
 function load(){try{return JSON.parse(window.localStorage.getItem(K)||'{}')||{}}catch(e){return mem}}
 function save(){try{window.localStorage.setItem(K,JSON.stringify(done))}catch(e){mem=done}}
 done=load();document.documentElement.className+=' hasjs';
-var cards=[].slice.call(document.querySelectorAll('.card')),cl='all',T=63;
+var cards=[].slice.call(document.querySelectorAll('.card')),cl='all',T=67;
 function sync(){var n=0;for(var k in done)if(done[k])n++;
 document.getElementById('pb').style.width=(100*n/T)+'%';document.getElementById('pc').textContent=n+'/'+T+' done';
 cards.forEach(function(c){var d=!!done[c.dataset.id];c.classList.toggle('done',d);c.querySelector('.dn').checked=d})}
