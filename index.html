@@ -23,11 +23,46 @@ label.done input{width:18px;height:18px}.star{border-color:#e6b450}.start{backgr
 #xsync button{padding:6px 10px;border-radius:8px;border:1px solid var(--b);background:var(--card);color:var(--fg);font-size:13px;cursor:pointer}
 .disc{border-top:2px dashed #6b5bd6;margin-top:32px;padding-top:4px}.disc h2,.disc h3{color:#a99bff}.disc .card{border-color:#3d3570}</style></head><body>
 <header><div class="wrap" style="padding-bottom:0"><h1>🧠 AI Deep-Dive Queue</h1>
-<div class="row"><div style="flex:1"><div class="bar"><i id="pb"></i></div></div><span id="pc" class="small">0/85 done</span></div>
+<div class="row"><div style="flex:1"><div class="bar"><i id="pb"></i></div></div><span id="pc" class="small">0/86 done</span></div>
 <div class="row js"><input type="search" id="q" placeholder="Search posts, authors, summaries…"><label class="done"><input type="checkbox" id="hide">Hide done</label></div>
 <div class="row js" id="chips"><button class="chip on" data-c="all">All</button><button class="chip" data-c="agents">Agent workflows &amp; Grok Bot playbooks</button><button class="chip" data-c="models">New models &amp; research</button><button class="chip" data-c="safety">AI safety, science &amp; the big picture</button><button class="chip" data-c="infra">Compute &amp; infrastructure</button><button class="chip" data-c="build">Learning to build with AI</button><button class="chip" data-c="discover">🔭 Discover</button></div>
 <div class="row js" id="xsync"></div></div></header>
-<main class="wrap"><div class="start" id="start"><h2>⭐ Start here</h2><div class="card star" data-id="2121323469002437065" data-c="agents">
+<main class="wrap"><div class="start" id="start"><h2>⭐ Start here</h2><div class="card star" data-id="2124683868364210603" data-c="safety">
+<div class="meta"><span>⭐ <b>Julian</b> <a href="https://x.com/tyay2015" target="_blank">@tyay2015</a> · 2026-11-23</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">A Chinese-language post by @tyay2015 hyping (and paraphrasing) Alexandr Wang&#x27;s new X article &#x27;Superintelligence is Arriving&#x27;. Wang, who runs Meta&#x27;s superintelligence lab, writes that the AI-assisted proof of the Riemann Hypothesis, announced Nov 20 by Anthropic mathematician Levent Alpöge, who says Claude helped him build it over about six weeks, and then certified by the Lean and Mathlib communities, marks the start of a major shift. His argument: raw intelligence is no longer the bottleneck, so what remains is domain know-how, plumbing and experiments; AI research itself is easier than the Riemann Hypothesis, so models will soon automate AI research and speed up biology, weapons and economics faster than people can follow. He calls it &#x27;lazy thinking&#x27; to treat superintelligence as inevitable and only ask how to build it safely, and says we should not accept a &#x27;handover&#x27; of society to AI but build technology that gives people more agency.</div><div class="why"><b>Why dive in:</b> This is the biggest AI-and-science story of the year so far, plus a rare alarm from a frontier lab leader. The bookmarked post is a hype paraphrase, so read Wang&#x27;s short original and then the coverage of the proof itself. The Lean check confirms the formal proof; a human-readable, peer-reviewed write-up is still pending. It pairs with the Brockman math-proofs and Casey Handmer items already on your list.</div>
+<ul><li><a href="https://x.com/tyay2015/status/2124683868364210603" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/alexandr_wang/status/2124636606959345776" target="_blank" rel="noopener">Alexandr Wang&#x27;s original post (X article)</a></li><li><a href="https://ournews.ai/news/superintelligence-is-arriving?lang=en" target="_blank" rel="noopener">Full essay text (OurNews mirror)</a></li><li><a href="https://www.theguardian.com/technology/2026/nov/21/anthropic-riemann-hypothesis-solved-claude-ai" target="_blank" rel="noopener">The Guardian: two groups verify Claude helped prove the Riemann Hypothesis</a></li><li><a href="https://www.scientificamerican.com/article/the-ai-riemann-hypothesis-proof-is-almost-certainly-true-independent-mathematicians-attest/" target="_blank" rel="noopener">Scientific American: independent mathematicians confirm the proof</a></li><li><a href="https://math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/" target="_blank" rel="noopener">Alpöge/Claude proof page (Univ. of Waterloo)</a></li><li><a href="https://www.euronews.com/2026/11/23/we-should-not-be-okay-with-a-handover-of-society-to-ai-warns-metas-ai-boss" target="_blank" rel="noopener">Euronews: &#x27;We should not be okay with a handover of society to AI&#x27;</a></li></ul>
+<details><summary>Original post text</summary><pre>卧槽，兄弟们，连掌管 Meta 超级智能实验室的 29 岁掌门人 Alexandr Wang，今天都亲自下场写长文拉响最高级别警报了。
+
+懂行的人都知道他的底细——从小在原子弹诞生地洛斯阿拉莫斯长大、MIT 出身、一路打数学竞赛杀出来的硬核理工天才，如今更是站在全球最顶尖 AI 牌桌核心的人物。
+
+结果就在今天，他发出一篇极其清醒、也极其沉重的重磅长文，第一句话就直接把硅谷的窗户纸捅穿了：超级智能已经兵临城下，未来这十二个月人类怎么选，将直接决定我们往后活在一个什么样的世界里。
+
+在 Alexandr Wang 看来，黎曼猜想被攻克，就是整个人类文明彻底转向的发令枪。
+
+绝大多数外行，压根没意识到这件事的恐怖量级。在研究数学的人眼里，黎曼猜想代表了人类智力成就的绝对珠峰——论纯粹的思维强度，人类历史上干成过的一切都无出其右。甚至连他老家洛斯阿拉莫斯的许多物理学家都会承认：比起证明黎曼猜想，当年造出原子弹顶多算一道课后作业。
+
+而这座人类最聪明的大脑死磕了 150 年的巅峰，刚刚在一种我们至今无法理解的“外星心智”协助下，被彻底踏平了。
+
+他把时间拨回 2024 年 12 月：当年 o3 横扫美国数学邀请赛（AIME）时，打过数学竞赛的人心里就已经咯噔一下——完了，一切都要变了。道理很简单，AIME 压轴题的纯智力难度，早就远超最顶尖工程师和商界精英的日常工作；当时卡住 AI 的根本不是不够聪明，而是缺行业经验、上下文和落地约束。果然，过去这两年把这些非智力短板一补齐，编程几乎被彻底打穿，顶级网络攻防和通用智能体全面爆发。
+
+可 AIME 终究只是青少年的课外竞赛，黎曼猜想却是人类历史上最烧脑的终极难题。MIT 的教授们都会告诉你，几乎所有人类核心学科里最顶尖的智力难题，纯思维难度其实都“低于”黎曼猜想，差的只是实验条件、数据积累和反馈闭环。
+
+这意味着一个极其残酷的分水岭：从今天起，AI 在几乎所有领域大幅碾压最顶尖人类，瓶颈彻底不再是智力本身，剩下的只是行业诀窍、工程管道和实验对接。
+
+而最致命的一刀，恰恰落在 AI 研发自己身上。
+
+绝大多数研究者都会承认，搞 AI 研究的智力难度，同样远远低于证明黎曼猜想。这意味着模型很快就能把整个 AI 研发彻底自动化，在“自我升级”这件事上全面超越人类——同时把生物、武器、经济学等所有领域全按下疯狂加速键。就像今天数学界根本来不及消化黎曼猜想的证明一样，用不了多久，几乎每个学科的狂飙速度，都将彻底甩开人类大脑能够理解和监控的极限。
+
+这就好比人类造出了一台能一边狂飙、一边自己改图纸升级发动机的超级列车。前两年大家还在争论它爬不爬得上眼前这道坡，结果一眨眼它连地球最高峰都直接碾平了——此时最要命的早就不是车跑不跑得动，而是车速快到连仪表盘都跟不上跳字，车里却还有人一边看着窗外一边自我安慰：“既然拦不住，那咱们就研究怎么安全地把方向盘交出去吧。”
+
+整篇文章最狠、也最清醒的，是最后这段对整个 AI 圈的当头棒喝。
+
+作为亲自掌舵超级智能实验室的核心大佬，Alexandr Wang 直接痛批了行业里正在蔓延的一种“懒人思维”——很多人默认“超级智能不可避免，唯一要解决的只是怎么安全地造出来”。
+
+他把话撂得很死：面对不受约束的递归自我进化，以及比人类聪明 1000 倍的超级智能，很难想象人类还能轻松守住控制权。既然“把能力推到极限”的科学难题已经被基本解决，安全、对齐和防护已经刻不容缓；但更底层的红线在于——我们绝不该坦然接受把人类社会“交接（Handover）”给 AI 的结局。
+
+人类真正应该拼命去打造的，是能赋予每个人更强主动权与赋能的技术。连冲在超级智能最前线的掌门人都站出来大喊“全行业必须立刻偏离眼前的默认轨道”，你就能明白：这绝不是外行的杞人忧天，而是人类留给自己亲手握紧方向盘的最后窗口期。</pre></details></div><div class="card star" data-id="2121323469002437065" data-c="agents">
 <div class="meta"><span>⭐ <b>Elon Musk</b> <a href="https://x.com/elonmusk" target="_blank">@elonmusk</a> · 2026-11-13</span>
 <label class="done js"><input type="checkbox" class="dn">Done</label></div>
 <div class="sum">Elon quotes Anatoli Kopadze&#x27;s Nov 13 post with &quot;Try Grok @Bot.&quot; Kopadze shares a prompt (posted as an image) that sets up a Grok Bot as a second brain: you send it everything you read, watch and think, and it builds a knowledge base that organizes itself. He links his longer August article &#x27;Grok Bot explained,&#x27; which covers what Grok Bot is, the free trial, seven example agents with full prompts (competitor intel, lead qualifier, content repurposing, support triage, morning news desk, recruiting scout, overnight ops), schedule and event triggers, and tips like loading your context first, connecting your tools and teaching a bot by recording yourself doing a task.</div><div class="why"><b>Why dive in:</b> A second-brain bot is the natural next step for a bookmark habit like yours: instead of saving posts to read later, a bot files and links them so you can ask questions of them. The prompt itself is only in the image, so open the post to copy it. AllGrokBot&#x27;s write-up gives its own starter prompt plus good standing rules (answer only from your notes and cite the file, never delete a note without approval), which are worth adding whichever prompt you use.</div>
@@ -1005,7 +1040,42 @@ Amazing work by the team, combining the best of our research in general world mo
 <ul><li><a href="https://x.com/Scobleizer/status/2092033614745878918" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/kotoba_tech/status/2091942422930710886" target="_blank" rel="noopener">Kotoba demo post</a></li></ul>
 <details><summary>Original post text</summary><pre>Real time. 
 
-I have a feeling this will be a trend soon. https://t.co/d4ecV9YFjH</pre></details></div></section><section data-c="safety"><h2>AI safety, science &amp; the big picture (14)</h2><div class="card" data-id="2122609626588061816" data-c="safety">
+I have a feeling this will be a trend soon. https://t.co/d4ecV9YFjH</pre></details></div></section><section data-c="safety"><h2>AI safety, science &amp; the big picture (15)</h2><div class="card star" data-id="2124683868364210603" data-c="safety">
+<div class="meta"><span>⭐ <b>Julian</b> <a href="https://x.com/tyay2015" target="_blank">@tyay2015</a> · 2026-11-23</span>
+<label class="done js"><input type="checkbox" class="dn">Done</label></div>
+<div class="sum">A Chinese-language post by @tyay2015 hyping (and paraphrasing) Alexandr Wang&#x27;s new X article &#x27;Superintelligence is Arriving&#x27;. Wang, who runs Meta&#x27;s superintelligence lab, writes that the AI-assisted proof of the Riemann Hypothesis, announced Nov 20 by Anthropic mathematician Levent Alpöge, who says Claude helped him build it over about six weeks, and then certified by the Lean and Mathlib communities, marks the start of a major shift. His argument: raw intelligence is no longer the bottleneck, so what remains is domain know-how, plumbing and experiments; AI research itself is easier than the Riemann Hypothesis, so models will soon automate AI research and speed up biology, weapons and economics faster than people can follow. He calls it &#x27;lazy thinking&#x27; to treat superintelligence as inevitable and only ask how to build it safely, and says we should not accept a &#x27;handover&#x27; of society to AI but build technology that gives people more agency.</div><div class="why"><b>Why dive in:</b> This is the biggest AI-and-science story of the year so far, plus a rare alarm from a frontier lab leader. The bookmarked post is a hype paraphrase, so read Wang&#x27;s short original and then the coverage of the proof itself. The Lean check confirms the formal proof; a human-readable, peer-reviewed write-up is still pending. It pairs with the Brockman math-proofs and Casey Handmer items already on your list.</div>
+<ul><li><a href="https://x.com/tyay2015/status/2124683868364210603" target="_blank" rel="noopener">Open the post on X</a></li><li><a href="https://x.com/alexandr_wang/status/2124636606959345776" target="_blank" rel="noopener">Alexandr Wang&#x27;s original post (X article)</a></li><li><a href="https://ournews.ai/news/superintelligence-is-arriving?lang=en" target="_blank" rel="noopener">Full essay text (OurNews mirror)</a></li><li><a href="https://www.theguardian.com/technology/2026/nov/21/anthropic-riemann-hypothesis-solved-claude-ai" target="_blank" rel="noopener">The Guardian: two groups verify Claude helped prove the Riemann Hypothesis</a></li><li><a href="https://www.scientificamerican.com/article/the-ai-riemann-hypothesis-proof-is-almost-certainly-true-independent-mathematicians-attest/" target="_blank" rel="noopener">Scientific American: independent mathematicians confirm the proof</a></li><li><a href="https://math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/" target="_blank" rel="noopener">Alpöge/Claude proof page (Univ. of Waterloo)</a></li><li><a href="https://www.euronews.com/2026/11/23/we-should-not-be-okay-with-a-handover-of-society-to-ai-warns-metas-ai-boss" target="_blank" rel="noopener">Euronews: &#x27;We should not be okay with a handover of society to AI&#x27;</a></li></ul>
+<details><summary>Original post text</summary><pre>卧槽，兄弟们，连掌管 Meta 超级智能实验室的 29 岁掌门人 Alexandr Wang，今天都亲自下场写长文拉响最高级别警报了。
+
+懂行的人都知道他的底细——从小在原子弹诞生地洛斯阿拉莫斯长大、MIT 出身、一路打数学竞赛杀出来的硬核理工天才，如今更是站在全球最顶尖 AI 牌桌核心的人物。
+
+结果就在今天，他发出一篇极其清醒、也极其沉重的重磅长文，第一句话就直接把硅谷的窗户纸捅穿了：超级智能已经兵临城下，未来这十二个月人类怎么选，将直接决定我们往后活在一个什么样的世界里。
+
+在 Alexandr Wang 看来，黎曼猜想被攻克，就是整个人类文明彻底转向的发令枪。
+
+绝大多数外行，压根没意识到这件事的恐怖量级。在研究数学的人眼里，黎曼猜想代表了人类智力成就的绝对珠峰——论纯粹的思维强度，人类历史上干成过的一切都无出其右。甚至连他老家洛斯阿拉莫斯的许多物理学家都会承认：比起证明黎曼猜想，当年造出原子弹顶多算一道课后作业。
+
+而这座人类最聪明的大脑死磕了 150 年的巅峰，刚刚在一种我们至今无法理解的“外星心智”协助下，被彻底踏平了。
+
+他把时间拨回 2024 年 12 月：当年 o3 横扫美国数学邀请赛（AIME）时，打过数学竞赛的人心里就已经咯噔一下——完了，一切都要变了。道理很简单，AIME 压轴题的纯智力难度，早就远超最顶尖工程师和商界精英的日常工作；当时卡住 AI 的根本不是不够聪明，而是缺行业经验、上下文和落地约束。果然，过去这两年把这些非智力短板一补齐，编程几乎被彻底打穿，顶级网络攻防和通用智能体全面爆发。
+
+可 AIME 终究只是青少年的课外竞赛，黎曼猜想却是人类历史上最烧脑的终极难题。MIT 的教授们都会告诉你，几乎所有人类核心学科里最顶尖的智力难题，纯思维难度其实都“低于”黎曼猜想，差的只是实验条件、数据积累和反馈闭环。
+
+这意味着一个极其残酷的分水岭：从今天起，AI 在几乎所有领域大幅碾压最顶尖人类，瓶颈彻底不再是智力本身，剩下的只是行业诀窍、工程管道和实验对接。
+
+而最致命的一刀，恰恰落在 AI 研发自己身上。
+
+绝大多数研究者都会承认，搞 AI 研究的智力难度，同样远远低于证明黎曼猜想。这意味着模型很快就能把整个 AI 研发彻底自动化，在“自我升级”这件事上全面超越人类——同时把生物、武器、经济学等所有领域全按下疯狂加速键。就像今天数学界根本来不及消化黎曼猜想的证明一样，用不了多久，几乎每个学科的狂飙速度，都将彻底甩开人类大脑能够理解和监控的极限。
+
+这就好比人类造出了一台能一边狂飙、一边自己改图纸升级发动机的超级列车。前两年大家还在争论它爬不爬得上眼前这道坡，结果一眨眼它连地球最高峰都直接碾平了——此时最要命的早就不是车跑不跑得动，而是车速快到连仪表盘都跟不上跳字，车里却还有人一边看着窗外一边自我安慰：“既然拦不住，那咱们就研究怎么安全地把方向盘交出去吧。”
+
+整篇文章最狠、也最清醒的，是最后这段对整个 AI 圈的当头棒喝。
+
+作为亲自掌舵超级智能实验室的核心大佬，Alexandr Wang 直接痛批了行业里正在蔓延的一种“懒人思维”——很多人默认“超级智能不可避免，唯一要解决的只是怎么安全地造出来”。
+
+他把话撂得很死：面对不受约束的递归自我进化，以及比人类聪明 1000 倍的超级智能，很难想象人类还能轻松守住控制权。既然“把能力推到极限”的科学难题已经被基本解决，安全、对齐和防护已经刻不容缓；但更底层的红线在于——我们绝不该坦然接受把人类社会“交接（Handover）”给 AI 的结局。
+
+人类真正应该拼命去打造的，是能赋予每个人更强主动权与赋能的技术。连冲在超级智能最前线的掌门人都站出来大喊“全行业必须立刻偏离眼前的默认轨道”，你就能明白：这绝不是外行的杞人忧天，而是人类留给自己亲手握紧方向盘的最后窗口期。</pre></details></div><div class="card" data-id="2122609626588061816" data-c="safety">
 <div class="meta"><span><b>Casey Handmer</b> <a href="https://x.com/CJHandmer" target="_blank">@CJHandmer</a> · 2026-11-17</span>
 <label class="done js"><input type="checkbox" class="dn">Done</label></div>
 <div class="sum">Physicist Casey Handmer pointed Claude Opus 5.5 at his old field, theoretical astrophysics. His site reports 158,059 papers indexed from a citation map around Caltech&#x27;s TAPIR group, 50,269 open full texts screened, and 659 highly cited papers recomputed line by line (equations, units, limits, numbers rebuilt from the paper&#x27;s own tables), with a separate session re-deriving each finding. Result: 872 errors upheld in 433 papers, and papers that copied an error outnumber ones that criticized it in print about 5 to 1. He puts the cost at roughly $2,700 of API tokens and ~44 hours of his time, and offers to audit whole fields if a lab sponsors ~$100K of tokens.</div><div class="why"><b>Why dive in:</b> Read the &#x27;Method and limits&#x27; page before the headline: no human has checked the 872 issues, and the extra check (a fresh Opus session upheld 33 of 40 sampled errors) is still AI checking AI. Even so, it is one of the clearest public examples of a frontier model doing real, auditable research work at scale, and his whole pipeline (prompts, models, timestamps) is published as SQLite databases you can inspect. The same review-then-independent-verify loop works for checking any big pile of documents.</div>
@@ -1510,7 +1580,7 @@ ChatGPT transformed my laptop into a free streaming center.  Here are 7 prompts 
 <div class="sum">Points to a 45-minute session where SpaceXAI&#x27;s Peng Zheng and Lauren Tan show how they use Grok Bot to build Grok Bot across design, engineering, user feedback and bot management.</div><div class="why"><b>Why dive in:</b> The internal playbook behind the guides you saved. The framing is hypey, but the linked session is the real substance.</div>
 <ul><li><a href="https://x.com/0xGenAi/status/2105372581725356099" target="_blank" rel="noopener">Open the post on X</a></li></ul>
 </div><h3>Accounts worth following</h3><ul><li><a href="https://x.com/poteto" target="_blank" rel="noopener">@poteto</a> (Lauren Tan): Builds Grok Bot at SpaceXAI (ex-Cursor, React compiler); the most practical agent-workflow posts on X. ~188K followers.</li><li><a href="https://x.com/hardmaru" target="_blank" rel="noopener">@hardmaru</a> (hardmaru): Sakana AI co-founder and CEO; shares serious research (self-improvement, evolutionary methods). ~441K followers.</li><li><a href="https://x.com/ArtificialAnlys" target="_blank" rel="noopener">@ArtificialAnlys</a> (Artificial Analysis): Independent benchmarks and price comparisons for every new model; a fast way to cut through launch hype. ~159K followers.</li><li><a href="https://x.com/OfficialLoganK" target="_blank" rel="noopener">@OfficialLoganK</a> (Logan Kilpatrick): Leads Gemini API / AI Studio at Google; first to post Gemini launches. ~379K followers.</li><li><a href="https://x.com/bot" target="_blank" rel="noopener">@bot</a> (Grok Bot): The official Grok Bot account: weekly use-case roundups, workshops and launches (it&#x27;s the source of several of your bookmarks). ~391K followers.</li></ul></section></div>
-<p class="small">Built from your 100 most recent X bookmarks, filtered to AI, plus a Discover section (85 items). Done is saved in this browser. On ai.gregw.org, checking Done also removes the post from your X bookmarks, and unchecking puts it back.</p></main>
+<p class="small">Built from your 100 most recent X bookmarks, filtered to AI, plus a Discover section (86 items). Done is saved in this browser. On ai.gregw.org, checking Done also removes the post from your X bookmarks, and unchecking puts it back.</p></main>
 <script>
 (function(){try{
 var K='greg-ai-done-v1',CK='greg-ai-sync-code-v1',mem={},done={};
@@ -1519,7 +1589,7 @@ function save(){try{window.localStorage.setItem(K,JSON.stringify(done))}catch(e)
 function getCode(){try{return window.localStorage.getItem(CK)||''}catch(e){return ''}}
 function setCode(v){try{if(v)window.localStorage.setItem(CK,v);else window.localStorage.removeItem(CK)}catch(e){}}
 done=load();document.documentElement.className+=' hasjs';
-var cards=[].slice.call(document.querySelectorAll('.card')),cl='all',T=85;
+var cards=[].slice.call(document.querySelectorAll('.card')),cl='all',T=86;
 var canX=location.hostname==='ai.gregw.org';
 var xbox=document.getElementById('xsync');
 function xmsg(t){if(xbox)xbox.setAttribute('data-msg',t||'')}
